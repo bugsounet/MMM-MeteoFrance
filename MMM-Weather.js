@@ -45,8 +45,7 @@ Module.register("MMM-Weather", {
       maximum: "max",
       high: "H",
       low: "L",
-      timeFormat: "h a",
-      days: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+      timeFormat: "kk[h]", //"h a",
       ordinals: ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
     }
   },
@@ -174,7 +173,7 @@ Module.register("MMM-Weather", {
     // --------- Date / Time Display ---------
     if (type == "daily") {
       //day name (e.g.: "MON")
-      fItem.day = this.config.labels.days[moment(fData.dt * 1000).format("d")];
+      fItem.day = moment(fData.dt * 1000).format("ddd")
     } else { //hourly
       //time (e.g.: "5 PM")
       fItem.time = moment(fData.dt * 1000).format(this.config.labels.timeFormat);
@@ -214,6 +213,7 @@ Module.register("MMM-Weather", {
     Returns a formatted data object for precipitation
    */
   formatPrecipitation: function(pop, precipitation) {
+    precipitation = precipitation && precipitation["1h"] ? precipitation["1h"] : precipitation
     return {
       pop: pop ? (pop*100).toFixed(0) + "%": "0%",
       accumulation: precipitation ? "(" + precipitation + " " + this.getUnit("accumulationRain") + ")" : ""
@@ -261,7 +261,7 @@ Module.register("MMM-Weather", {
   units: {
     accumulationRain: {
       standard: "mm/h",
-      metric: "mm/h",
+      metric: "mm",
       imperial: "in/h",
     },
     accumulationSnow: {
