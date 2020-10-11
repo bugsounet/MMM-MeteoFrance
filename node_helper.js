@@ -33,6 +33,7 @@ module.exports = NodeHelper.create({
     console.log("[WEATHER] MMM-WEATHER Version:", require('./package.json').version)
     this.config = config
     if (this.config.debug) log = (...args) => { console.log("[WEATHER]", ...args) }
+    else log = (...args) => { /* do nothing */ }
     this.updateIntervalMilliseconds = this.getUpdateIntervalMillisecondFromString(this.config.updateInterval)
     if (this.config.api.key == null || this.config.api.key == "") {
       return this.sendError("No API key configured.", "Get an API key at https://openweathermap.org/")

@@ -153,7 +153,7 @@ Module.register("MMM-Weather", {
         temperature: Math.round(this.weatherData.current.temp) + "°",
         iconPath: "http://openweathermap.org/img/wn/" + this.weatherData.current.weather[0].icon + "@2x.png",
         tempRange: this.formatHiLowTemperature(this.weatherData.daily[0].temp.max, this.weatherData.daily[0].temp.min),
-        precipitation: this.formatPrecipitation(this.weatherData.daily[0].pop, this.weatherData.daily[0].rain),
+        precipitation: this.formatPrecipitation(this.weatherData.hourly[0].pop, this.weatherData.hourly[0].rain ? this.weatherData.hourly[0].rain["1h"]: null),
         wind: this.formatWind(this.weatherData.hourly[0].wind_speed, this.weatherData.current.wind_deg, this.weatherData.current.wind_gust)
       },
       "summary" : summary,

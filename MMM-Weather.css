@@ -3,7 +3,7 @@
 }
 
 .MMM-Weather .module-content {
-  width: 300px;
+  width: 350px;
 }
 
 .MMM-Weather .forecast-container .forecast-item .temperature,
@@ -47,9 +47,9 @@
 .MMM-Weather .current-conditions-wrapper .icon {
   vertical-align: middle;
   line-height: 80px;
-  margin-right: 20px;
-  width: 140px;
-  height: 140px;
+  margin-right: 40px;
+  width: 120px;
+  height: 120px;
   display: inline-block;
   position: relative;
 }
@@ -83,13 +83,18 @@
   display: inline-block;
   white-space: nowrap;
   margin:0 15px;
-  margin-bottom: 10px;
+  margin-left: auto;
+}
+
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener {
+  display: flex;
+  margin: 0 5px;
 }
 
 /* Summary */
 
 .MMM-Weather .summary {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 
