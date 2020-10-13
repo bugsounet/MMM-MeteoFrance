@@ -30,7 +30,11 @@ Module.register("MMM-Weather", {
       DailyForecast: true,
       Precipitation: true,
       Wind: true,
-      InlineIcons: true
+      InlineIcons: true,
+      Feels: true,
+      SunCondition: true,
+      Humidity: true,
+      UV: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -64,7 +68,7 @@ Module.register("MMM-Weather", {
   },
 
   getStyles: function () {
-    return ["MMM-Weather.css"]
+    return ["MMM-Weather.css", "weather-icons.css"]
   },
 
   getTemplate: function () {
@@ -83,7 +87,8 @@ Module.register("MMM-Weather", {
       forecast: this.formattedWeatherData,
       inlineIcons : {
         rain: this.file("icons/i-rain.svg"),
-        wind: this.file("icons/i-wind.svg")
+        wind: this.file("icons/i-wind.svg"),
+        uv: this.file("icons/uv.png")
       },
       update: this.weatherData && this.weatherData.update ? this.weatherData.update : this.translate("LOADING")
     }
@@ -150,11 +155,18 @@ Module.register("MMM-Weather", {
 
     return {
       "currently" : {
-        temperature: Math.round(this.weatherData.current.temp) + "°",
+        temperature: this.weatherData.current.temp.toFixed(1) + "°",
         iconPath: "http://openweathermap.org/img/wn/" + this.weatherData.current.weather[0].icon + "@2x.png",
         tempRange: this.formatHiLowTemperature(this.weatherData.daily[0].temp.max, this.weatherData.daily[0].temp.min),
-        precipitation: this.formatPrecipitation(this.weatherData.hourly[0].pop, this.weatherData.hourly[0].rain ? this.weatherData.hourly[0].rain["1h"]: null),
-        wind: this.formatWind(this.weatherData.hourly[0].wind_speed, this.weatherData.current.wind_deg, this.weatherData.current.wind_gust)
+        precipitation: this.formatPrecipitation(this.weatherData.hourly[0].pop, 
+          (this.weatherData.current.rain ? this.weatherData.current.rain["1h"] :
+          (this.weatherData.hourly[0].rain ? this.weatherData.hourly[0].rain["1h"] : null))
+        ),
+        wind: this.formatWind(this.weatherData.current.wind_speed, this.weatherData.current.wind_deg, this.weatherData.current.wind_gust),
+        feels: this.formatFeels(this.weatherData.current.feels_like),
+        sun: this.formatSun(this.weatherData.current.sunrise, this.weatherData.current.sunset),
+        humidity: this.weatherData.current.humidity + "%",
+        uv: Math.round(this.weatherData.current.uvi)
       },
       "summary" : summary,
       "hourly" : hourlies,
@@ -199,6 +211,24 @@ Module.register("MMM-Weather", {
     return fItem;
   },
 
+  formatFeels: function(feels) {
+    return this.translate("FEELS") + ": " + Math.round(feels) + "°"
+  },
+
+  formatSun: function(Sunrise,Sunset) {
+    var now = new Date();
+    var sunrise = new Date(Sunrise * 1000);
+    var sunset = new Date(Sunset * 1000);
+
+    var sunDate = sunrise < now && sunset > now ? sunset : sunrise;
+    var timeString = config.timeFormat == 24 ? moment(sunDate).format("HH:mm") : moment(sunDate).format("h:mm A")
+
+    return {
+      time: timeString,
+      icon: sunrise < now && sunset > now ? "wi-sunset" : "wi-sunrise"
+    }
+  },
+
   /*
     Returns a formatted data object for High / Low temperature range
    */
@@ -230,7 +260,8 @@ Module.register("MMM-Weather", {
     if (!this.config.personalize.concise && gust) {
       windGust = " (" + this.config.labels.maximum + " " + Math.round(gust) + " " + this.getUnit("windSpeed") + ")";
     }
-    if (this.config.api.units == "metric") speed = speed * 3,6
+    if (this.config.api.units == "metric") speed = speed * 3.6
+    if (this.config.api.units == "imperial") speed = speed * 2.237
 
     return {
       windSpeed: Math.round(speed) + " " + this.getUnit("windSpeed") + (!this.config.personalize.concise ? " " + this.getOrdinal(bearing) : ""),

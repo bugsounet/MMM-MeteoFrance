@@ -56,10 +56,7 @@
 
 .MMM-Weather .extra-current-conditions-wrapper {
   display: block;
-  /*text-align: left;*/
-  /*background-color: #333;*/
   word-wrap: normal;
-  margin: 0 -15px;
 }
 
 
@@ -74,6 +71,11 @@
   position: relative;
 }
 
+.MMM-Weather .extra-current-conditions-wrapper .feels-sun-container .inline-icon {
+    width: 16px;
+    height: 16px;
+    transform: translate(0, -5px);
+}
 
 /* Extra Current Conditions */
 
@@ -82,13 +84,27 @@
 .MMM-Weather .extra-current-conditions-wrapper .wind-container {
   display: inline-block;
   white-space: nowrap;
-  margin:0 15px;
   margin-left: auto;
 }
 
 .MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener {
   display: flex;
-  margin: 0 5px;
+}
+
+.MMM-Weather .extra-current-conditions-wrapper .feels-sun-container .wi-sunset {
+  color: orange;
+  font-size: 80%;
+}
+
+.MMM-Weather .extra-current-conditions-wrapper .feels-sun-container .wi-sunrise {
+  color: yellow;
+  font-size: 80%;
+}
+
+.MMM-Weather .extra-current-conditions-wrapper .feels-sun-container .wi-humidity {
+  color: #167ac6;
+  font-size: 80%;
+  transform: translate(0, -1px);
 }
 
 /* Summary */
