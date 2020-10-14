@@ -67,7 +67,7 @@ Module.register("MMM-Weather", {
   },
 
   getStyles: function () {
-    return ["MMM-Weather.css", "weather-icons-testing.css"]
+    return ["MMM-Weather.css", "weather-icons.css"]
   },
 
   getTemplate: function () {
