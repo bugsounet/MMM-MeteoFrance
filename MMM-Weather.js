@@ -11,7 +11,7 @@ Module.register("MMM-Weather", {
 
   requiresVersion: "2.13.0",
   defaults: {
-    debug: true,
+    debug: false,
     updateInterval: "15m", // 15 minutes
     updateFadeSpeed: 500,
     api: {
@@ -67,7 +67,7 @@ Module.register("MMM-Weather", {
   },
 
   getStyles: function () {
-    return ["MMM-Weather.css", "weather-icons.css"]
+    return ["MMM-Weather.css", "weather-icons-testing.css"]
   },
 
   getTemplate: function () {
