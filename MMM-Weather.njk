@@ -69,8 +69,8 @@
                   <img class="inline-icon wind-icon" src="{{ inlineIcons.wind }}" />
                 {% endif %}
                 <span class="wind-speed">{{ forecast.currently.wind.windSpeed }}</span>
-                {% if forecast.currently.wind.windGust %}
-                  <span class="wind-gusts">{{ forecast.currently.wind.windGust }}</span>
+                {% if forecast.currently.wind.windDeg %}
+                  &nbsp;<span class="fa fa-long-arrow-down {{ forecast.currently.wind.Beaufort }}" style="transform:rotate({{ forecast.currently.wind.windDeg }}deg)"></span>
                 {% endif %}
               </span>
             {% endif %}
@@ -153,9 +153,8 @@
                   {% endif %}
 
                   <span class="wind-speed">{{ h.wind.windSpeed }}</span>
-                  
-                  {% if h.wind.windGust %}
-                    <span class="wind-gusts">{{ h.wind.windGust }}</span>
+                  {% if h.wind.windDeg %}
+                    &nbsp;<span class="fa fa-long-arrow-down {{ h.wind.Beaufort }}" style="transform:rotate({{ h.wind.windDeg }}deg)"></span>
                   {% endif %}
 
                 </span>
@@ -212,8 +211,8 @@
                   {% endif %}
 
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
-                  {% if d.wind.windGust %}
-                    <span class="wind-gusts">{{ d.wind.windGust }}</span>
+                  {% if d.wind.windDeg %}
+                    &nbsp;<span class="fa fa-long-arrow-down {{ d.wind.Beaufort }}" style="transform:rotate({{ d.wind.windDeg }}deg)"></span>
                   {% endif %}
 
                 </span>

@@ -91,6 +91,79 @@
   display: flex;
 }
 
+.MMM-Weather .forecast-container .forecast-item .wind-container .fa-long-arrow-down,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .fa-long-arrow-down {
+  font-size: 90%;
+  display: inline-block;
+}
+
+/* Beaufort color */
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort0,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort0 {
+  color: #FFFFFF;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort1,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort1 {
+  color: #AEF1F9;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort2,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort2 {
+  color: #96F7DC;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort3,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort3 {
+  color: #96F7B4;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort4,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort4 {
+  color: #6FF46F;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort5,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort5 {
+  color: #73ED12;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort6,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort6 {
+  color: #A4ED12;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort7,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort7 {
+  color: #DAED12;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort8,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort8 {
+  color: #EDC212;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort9,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort9 {
+  color: #ED8F12;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort10,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort10 {
+  color: #ED6312;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort11,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort11 {
+  color: #ED2912;
+}
+
+.MMM-Weather .forecast-container .forecast-item .wind-container .Beaufort12,
+.MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort12 {
+  color: #D5102D;
+}
+
+
 .MMM-Weather .extra-current-conditions-wrapper .feels-sun-container .wi-sunset {
   color: orange;
   font-size: 80%;
@@ -178,16 +251,10 @@
 }
 
 
-.MMM-Weather .wrapper.tiled .forecast-container .forecast-item .wind-speed,
-.MMM-Weather .wrapper.tiled .forecast-container .forecast-item .wind-gusts {
+.MMM-Weather .wrapper.tiled .forecast-container .forecast-item .wind-speed {
   display: inline-block;
   white-space: nowrap;
 }
-
-.MMM-Weather .wrapper.tiled .forecast-container .forecast-item .wind-gusts {
-  display: block;
-}
-
 
 .MMM-Weather .wrapper.tiled .forecast-container .forecast-item .temperature,
 .MMM-Weather .wrapper.tiled .forecast-container .forecast-item .temperature-container {
@@ -265,12 +332,11 @@
 }
 
 .MMM-Weather .wrapper.table .forecast-container .forecast-item .time,
-.MMM-Weather .wrapper.table .forecast-container .forecast-item  .high-temperature,
+.MMM-Weather .wrapper.table .forecast-container .forecast-item .high-temperature,
 .MMM-Weather .wrapper.table .forecast-container .forecast-item .low-temperature, {
   white-space: nowrap;
 }
 
-.MMM-Weather .wrapper.table .forecast-container .forecast-item .wind-gusts,
 .MMM-Weather .wrapper.table .forecast-container .forecast-item .accumulation {
   display: block;
   white-space: nowrap;

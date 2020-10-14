@@ -18,7 +18,7 @@ Module.register("MMM-Weather", {
       key: "",
       latitude: "",
       longitude: "",
-      units: "metric", //Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default
+      units: config.units,
       language: config.language
     },
     display: {
@@ -34,7 +34,8 @@ Module.register("MMM-Weather", {
       Feels: true,
       SunCondition: true,
       Humidity: true,
-      UV: true
+      UV: true,
+      Beaufort: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -46,11 +47,9 @@ Module.register("MMM-Weather", {
       forecastHeaderText: ""
     },
     labels: {
-      maximum: "max",
       high: "H",
       low: "L",
       timeFormat: "kk[h]", //"h a",
-      ordinals: ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
     }
   },
 
@@ -162,7 +161,7 @@ Module.register("MMM-Weather", {
           (this.weatherData.current.rain ? this.weatherData.current.rain["1h"] :
           (this.weatherData.hourly[0].rain ? this.weatherData.hourly[0].rain["1h"] : null))
         ),
-        wind: this.formatWind(this.weatherData.current.wind_speed, this.weatherData.current.wind_deg, this.weatherData.current.wind_gust),
+        wind: this.formatWind(this.weatherData.current.wind_speed, this.weatherData.current.wind_deg),
         feels: this.formatFeels(this.weatherData.current.feels_like),
         sun: this.formatSun(this.weatherData.current.sunrise, this.weatherData.current.sunset),
         humidity: this.weatherData.current.humidity + "%",
@@ -206,7 +205,7 @@ Module.register("MMM-Weather", {
     fItem.precipitation = this.formatPrecipitation(fData.pop,fData.rain);
 
     // --------- Wind ---------
-    fItem.wind = (this.formatWind(fData.wind_speed, fData.wind_deg, fData.wind_gust));
+    fItem.wind = this.formatWind(fData.wind_speed, fData.wind_deg);
 
     return fItem;
   },
@@ -254,18 +253,14 @@ Module.register("MMM-Weather", {
   /*
     Returns a formatted data object for wind conditions
    */
-  formatWind: function(speed, bearing, gust) {
-    //wind gust
-    var windGust = null;
-    if (!this.config.personalize.concise && gust) {
-      windGust = " (" + this.config.labels.maximum + " " + Math.round(gust) + " " + this.getUnit("windSpeed") + ")";
-    }
+  formatWind: function(speed, bearing) {
+    var Beaufort = this.ms2Beaufort(speed)
     if (this.config.api.units == "metric") speed = speed * 3.6
-    if (this.config.api.units == "imperial") speed = speed * 2.237
 
     return {
-      windSpeed: Math.round(speed) + " " + this.getUnit("windSpeed") + (!this.config.personalize.concise ? " " + this.getOrdinal(bearing) : ""),
-      windGust: windGust
+      windSpeed: Math.round(speed) + " " + this.getUnit("windSpeed"),
+      windDeg: !this.config.personalize.concise ? bearing : null,
+      Beaufort: "Beaufort"+Beaufort
     };
   },
 
@@ -273,15 +268,7 @@ Module.register("MMM-Weather", {
     Returns the units in use for the data pull
    */
   getUnit: function(metric) {
-    return this.units[metric][this.config.api.units];
-  },
-
-  /*
-    Formats the wind direction into common ordinals (e.g.: NE, WSW, etc.)
-    Wind direction is provided in degress from North in the data feed.
-   */
-  getOrdinal: function(bearing) {
-    return this.config.labels.ordinals[Math.round(bearing * 16 / 360) % 16];
+    return this.units[metric][this.config.api.units]
   },
 
   /*
@@ -305,5 +292,18 @@ Module.register("MMM-Weather", {
       metric: "km/h",
       imperial: "mph"
     }
+  },
+
+  ms2Beaufort: function (ms) {
+    if (!this.config.display.Beaufort) return 0
+    var kmh = this.config.api.units == "imperial" ? Math.round(ms * 1.609) : Math.round((ms * 60 * 60) / 1000)
+    var speeds = [1, 5, 11, 19, 28, 38, 49, 61, 74, 88, 102, 117, 1000]
+    for (var beaufort in speeds) {
+      var speed = speeds[beaufort]
+      if (speed > kmh) {
+        return beaufort
+      }
+    }
+    return 12
   }
 });
