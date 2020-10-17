@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/bugsounet/MMM-Weather#readme",
   "dependencies": {
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "weathericons": "^2.1.0"
   }
 }

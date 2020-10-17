@@ -91,6 +91,12 @@
   display: flex;
 }
 
+.MMM-Weather .extra-current-conditions-wrapper .temperature-container .wi-thermometer {
+  font-size: 80%;
+  transform: translate(0, -1px);
+  margin-right: 5px;
+}
+
 .MMM-Weather .forecast-container .forecast-item .wind-container .fa-long-arrow-down,
 .MMM-Weather .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .fa-long-arrow-down {
   font-size: 90%;
