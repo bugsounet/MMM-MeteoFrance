@@ -347,3 +347,8 @@
   display: block;
   white-space: nowrap;
 }
+
+.MMM-Weather .wrapper.table .forecast-container .header-row .temperature-header {
+  transform: translate(0, -1px);
+  font-size: 17px;
+}
