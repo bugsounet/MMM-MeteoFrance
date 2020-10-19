@@ -43,13 +43,13 @@ Module.register("MMM-Weather", {
       maxDailiesToShow: 3,
       concise: false,
       colored : true,
-      forecastLayout: "table", //"tiled",
+      forecastLayout: "table",
       forecastHeaderText: ""
     },
     labels: {
       high: "H",
       low: "L",
-      timeFormat: "kk[h]", //"h a",
+      timeFormat: "kk[h]",
     }
   },
 
@@ -68,8 +68,7 @@ Module.register("MMM-Weather", {
 
   getStyles: function () {
     return [
-      "MMM-Weather.css",
-      this.file("node_modules/weathericons/css/weather-icons.min.css")
+      "MMM-Weather.css"
     ]
   },
 
