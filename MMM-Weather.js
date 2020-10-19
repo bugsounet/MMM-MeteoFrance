@@ -68,7 +68,8 @@ Module.register("MMM-Weather", {
 
   getStyles: function () {
     return [
-      "MMM-Weather.css"
+      "MMM-Weather.css",
+      this.file("node_modules/weathericons/css/weather-icons.min.css")
     ]
   },
 
