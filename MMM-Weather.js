@@ -246,6 +246,7 @@ Module.register("MMM-Weather", {
    */
   formatPrecipitation: function(pop, precipitation) {
     precipitation = precipitation && precipitation["1h"] ? precipitation["1h"] : precipitation
+    if (this.config.api.units == "imperial" && precipitation) precipitation = (precipitation/25.4).toFixed(2)
     return {
       pop: pop ? (pop*100).toFixed(0) + "%": "0%",
       accumulation: precipitation ? "(" + precipitation + " " + this.getUnit("accumulationRain") + ")" : ""
