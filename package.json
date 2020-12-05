@@ -1,6 +1,6 @@
 {
   "name": "MMM-Weather",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Magic Mirror module that gets weather forecast data from OpenWeatherMap",
   "main": "MMM-Weather.js",
   "repository": {

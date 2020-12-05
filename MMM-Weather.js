@@ -116,9 +116,14 @@ Module.register("MMM-Weather", {
         this.updateDom(this.config.updateFadeSpeed)
         break
       case "ERROR":
-        this.error = payload
-        console.error("[WEATHER] **ERROR**", payload)
+        if (typeof payload == "object") {
+          if (payload.code = "EAI_AGAIN") this.error = "Connection lost..."
+          else this.error= payload.code
+        }
+        else this.error = payload
+        console.error("[WEATHER] **ERROR**", this.error)
         this.updateDom(this.config.updateFadeSpeed)
+        break
     }
   },
 
