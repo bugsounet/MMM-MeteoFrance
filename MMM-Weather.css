@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.MMM-Weather .wrapper {
+  margin-top: -30px;
+}
+
 .MMM-Weather .module-content {
   width: 350px;
 }
