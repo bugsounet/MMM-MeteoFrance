@@ -9,7 +9,7 @@
 
 Module.register("MMM-Weather", {
 
-  requiresVersion: "2.13.0",
+  requiresVersion: "2.15.0",
   defaults: {
     debug: false,
     updateInterval: "15m", // 15 minutes
@@ -219,7 +219,7 @@ Module.register("MMM-Weather", {
   },
 
   formatFeels: function(feels) {
-    return this.translate("FEELS") + ": " + Math.round(feels) + "°"
+    return this.translate("FEELS", { DEGREE: Math.round(feels) + "°" })
   },
 
   formatSun: function(Sunrise,Sunset) {
