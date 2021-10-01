@@ -8,7 +8,7 @@
  */
 
 var NodeHelper = require("node_helper");
-var request = require("request");
+const fetch = require("node-fetch");
 var moment = require("moment");
 
 module.exports = NodeHelper.create({
@@ -61,13 +61,16 @@ module.exports = NodeHelper.create({
 
     if (this.first) log("[WEATHER] Fetch data from:", url)
     else log("Weather Fetch data.")
-    request({url: url, method: "GET"}, (error, response, body) => {
-      if(!error && response.statusCode == 200) {
-        this.makeData(JSON.parse(body))
-      }
-      if (error) this.sendError(error)
-      else if (response.statusCode != 200) this.sendError(response.statusCode + " ("+ response.statusMessage+ ")" , JSON.parse(body).message)
-    })
+
+    fetch(url)
+      .then(NodeHelper.checkFetchStatus)
+      .then(async (response) => {
+        const jsonResponse = await response.json()
+        this.makeData(jsonResponse)
+      })
+      .catch((error) => {
+        this.sendError(error)
+      });
   },
 
   makeData: function(weather) {
