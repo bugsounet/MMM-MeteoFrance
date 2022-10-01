@@ -53,7 +53,8 @@ module.exports = NodeHelper.create({
   },
 
   fetchData: function() {
-    var url= "https://api.openweathermap.org/data/2.5/onecall?"+
+    let versionAPI = this.config.newAccount ? "3.0" : "2.5"
+    var url= "https://api.openweathermap.org/data/"+versionAPI+ "/onecall?"+
       "lat=" + this.config.api.latitude + "&lon=" + this.config.api.longitude +
       "&appid=" + this.config.api.key +
       "&units=" + this.config.api.units +

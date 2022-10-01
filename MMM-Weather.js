@@ -14,6 +14,7 @@ Module.register("MMM-Weather", {
     debug: false,
     updateInterval: "15m", // 15 minutes
     updateFadeSpeed: 500,
+    newAccount: false,
     api: {
       key: "",
       latitude: "",
