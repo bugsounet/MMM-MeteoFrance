@@ -10,6 +10,7 @@
 var NodeHelper = require("node_helper");
 const fetch = require("node-fetch");
 var moment = require("moment");
+var log = (...args) => { /* do nothing */ };
 
 module.exports = NodeHelper.create({
 
@@ -33,7 +34,6 @@ module.exports = NodeHelper.create({
     console.log("[WEATHER] MMM-WEATHER Version:", require('./package.json').version)
     this.config = config
     if (this.config.debug) log = (...args) => { console.log("[WEATHER]", ...args) }
-    else log = (...args) => { /* do nothing */ }
     this.updateIntervalMilliseconds = this.getUpdateIntervalMillisecondFromString(this.config.updateInterval)
     if (this.config.api.key == null || this.config.api.key == "") {
       return this.sendError("No API key configured.", "Get an API key at https://openweathermap.org/")
@@ -60,7 +60,7 @@ module.exports = NodeHelper.create({
       "&units=" + this.config.api.units +
       "&lang=" + this.config.api.language
 
-    if (this.first) log("[WEATHER] Fetch data from:", url)
+    if (this.first) log("Fetch data from:", url)
     else log("Weather Fetch data.")
 
     fetch(url)
