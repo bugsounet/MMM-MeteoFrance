@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/bugsounet/MMM-Weather#readme",
   "dependencies": {
+    "meteofrance_api": "^1.2.2",
     "weathericons": "^2.1.0"
   }
 }
