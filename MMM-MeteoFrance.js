@@ -148,19 +148,17 @@ Module.register("MMM-MeteoFrance", {
     var dailies = [];
     
     if (this.config.display.DailyForecast) {
-      /*
       for (var i = 1; i <= this.config.personalize.maxDailiesToShow; i++) {
-        if (this.weatherData.daily[i] == null) {
+        if (this.weatherData.forecast[i] == null) {
           break;
         }
-        //dailies.push(this.forecastItemFactory(this.weatherData.daily[i], "daily"))
+        const date = this.searchDate(i)
+        //console.log("-->", date, this.weatherData.forecast[i].time)
+        const dayForecast = this.weatherData.forecast.find((forecast) => forecast.time === date)
+        //console.log(dayForecast)
+        dailies.push(this.forecastItemFactory(dayForecast, "daily"))
       }
-      */
-      for (var i = 0 ; i < this.weatherData.forecast.length; i++) {
-        var time = this.weatherData.forecast[i].time
-        var test = moment(time).format(this.config.labels.timeFormat);
-        console.log(time,test)
-      }
+
     }
   
     return {
@@ -181,6 +179,16 @@ Module.register("MMM-MeteoFrance", {
     }
   },
 
+  searchDate(days) {
+    const now = new Date(Date.now())
+    const day = now.getDate()
+    const month = now.getMonth()
+    const year = now.getFullYear()
+
+    const now12 = new Date(year,month,day,14,0,0)
+    const result = new Date(now12.setDate(now12.getDate() + days))
+    return result.toJSON();
+  },
 
   /*
     Hourly and Daily forecast items are very similar.  So one routine builds the data
@@ -189,12 +197,12 @@ Module.register("MMM-MeteoFrance", {
   forecastItemFactory: function(fData, type) {
     var fItem = new Object();
 
-    console.log("--->fData", fData)
+    //console.log("--->fData", fData)
 
     // --------- Date / Time Display ---------
     if (type == "daily") {
       //day name (e.g.: "MON")
-      fItem.day = moment(fData.dt * 1000).format("ddd")
+      fItem.day = moment(fData.time).format("ddd")
     } else { //hourly
       //time (e.g.: "5 PM")
       fItem.time = moment(fData.time).format(this.config.labels.timeFormat);
@@ -208,11 +216,11 @@ Module.register("MMM-MeteoFrance", {
     if (type == "hourly") { //just display projected temperature for that hour
       fItem.temperature = Math.round(fData.temperature) + "°";
     } else { //display High / Low temperatures
-      fItem.tempRange = this.formatHiLowTemperature(fData.temp.max,fData.temp.min);
+      fItem.temperature = Math.round(fData.temperature) + "°";
     }
 
     // --------- Precipitation ---------
-    fItem.precipitation = this.formatPrecipitation(fData.rain["1h"]);
+    //fItem.precipitation = this.formatPrecipitation(fData.rain["1h"]);
 
     // --------- Wind ---------
     fItem.wind = this.formatWind(fData.wind_speed, fData.wind_icon);

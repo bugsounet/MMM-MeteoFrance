@@ -100,12 +100,6 @@
             <span class="weather-icon-header">&nbsp;</span>
             <span class="temperature-header"><span class="wi wi-thermometer"></span></span>
 
-            {% if config.display.Precipitation %}
-              <span class="precipitation-header">
-                <img class="inline-icon rain" src="{{ inlineIcons.rain }}" />
-              </span>
-            {% endif %}
-
             {% if config.display.Wind %}
               <span class="wind-header">
                 <img class="inline-icon wind" src="{{ inlineIcons.wind }}" />
@@ -126,25 +120,6 @@
               </span>
               <span class="temperature small">{{ h.temperature }}</span>
 
-
-              {% if config.display.Precipitation %}
-
-                <span class="precipitation-container">
-                  {% if (config.display.InlineIcons and config.personalize.forecastLayout == "tiled" ) %}
-                    <img class="inline-icon rain" src="{{ inlineIcons.rain }}" />
-                  {% endif %}
-
-                  <span class="pop">{{ h.precipitation.pop }}</span>
-
-                  {% if h.precipitation.accumulation %}
-                    {% if not config.personalize.concise %}
-                      <br>
-                    {% endif %}
-                    <span class="pop">{{ h.precipitation.accumulation }}</span>
-                  {% endif %}
-                </span>
-
-              {% endif %}
 
               {% if config.display.Wind %}
                 <span class="wind-container">
@@ -174,45 +149,17 @@
                 <img class="forecast-icon" src="{{ d.iconPath }}" />
               </span>
               <span class="temperature-container small">
-                <span class="high-temperature">{{ d.tempRange.high }}</span>
-                {% if config.personalize.concise %}
-                  <span class="temperature-separator dimmed">/</span>
-                {% else %}
-                  <br>
-                {% endif %}
-                <span class="low-temperature">{{ d.tempRange.low }}</span>
+                <span class="temperature small">{{ d.temperature }}</span>
               </span>
-
-              {% if config.display.Precipitation %}
-      
-                <span class="precipitation-container">
-                  {% if (config.display.InlineIcons and config.personalize.forecastLayout == "tiled" ) %}
-                    <img class="inline-icon rain" src="{{ inlineIcons.rain }}" />
-                  {% endif %}
-
-                  <span class="pop">{{ d.precipitation.pop }}</span>
-
-                  {% if d.precipitation.accumulation %}
-                    {% if not config.personalize.concise %}
-                      <br>
-                    {% endif %}
-                    <span class="pop">{{ d.precipitation.accumulation }}</span>
-                  {% endif %}
-                </span>
-
-              {% endif %}
 
               {% if config.display.Wind %}
                 <span class="wind-container">
                   {% if (config.display.InlineIcons and config.personalize.forecastLayout == "tiled" ) %}
-                    <img class="inline-icon wind-icon" src="{{ inlineIcons.wind }}" />
+                    <img class="inline-icon" src="{{ inlineIcons.wind }}" />
                   {% endif %}
 
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
-                  {% if d.wind.windDeg %}
-                    &nbsp;<span class="fa fa-long-arrow-down {{ d.wind.Beaufort }}" style="transform:rotate({{ d.wind.windDeg }}deg)"></span>
-                  {% endif %}
-
+                  <img class="inline-icon wind" src="{{ d.wind.windIcon }}" />
                 </span>
 
               {% endif %}
