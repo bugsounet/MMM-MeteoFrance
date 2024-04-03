@@ -30,7 +30,7 @@ Module.register("MMM-MeteoFrance", {
       SunCondition: true,
       Humidity: true,
       UV: true,
-      Beaufort: false
+      Beaufort: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -312,12 +312,13 @@ Module.register("MMM-MeteoFrance", {
     Returns a formatted data object for wind conditions
    */
   formatWind: function(speed, gust, icon) {
-    var Beaufort = this.ms2Beaufort(speed)
+    var Beaufort = this.kmh2Beaufort(speed)
 
     return {
       windSpeed: Math.round(speed) + " km/h",
       windSpeedGust: gust ? Math.round(speed+gust) + " km/h" : 0,
-      windIcon: icon
+      windIcon: icon,
+      Beaufort: "Beaufort"+Beaufort
     };
   },
 
@@ -351,9 +352,9 @@ Module.register("MMM-MeteoFrance", {
     }
   },
 
-  ms2Beaufort: function (ms) {
+  kmh2Beaufort: function (speed) {
     if (!this.config.display.Beaufort) return 0
-    var kmh = Math.round((ms * 60 * 60) / 1000)
+    var kmh = Math.round(speed)
     var speeds = [1, 5, 11, 19, 28, 38, 49, 61, 74, 88, 102, 117, 1000]
     for (var beaufort in speeds) {
       var speed = speeds[beaufort]

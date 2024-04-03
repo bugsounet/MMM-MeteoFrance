@@ -118,69 +118,82 @@
 }
 
 /* Beaufort color */
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort0,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort0,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort0 {
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/
+  filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(105deg) brightness(107%) contrast(100%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort1,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort1,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort1 {
-  color: #AEF1F9;
+  /*color: #AEF1F9;*/
+  filter: invert(87%) sepia(9%) saturate(1258%) hue-rotate(157deg) brightness(105%) contrast(95%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort2,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort2,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort2 {
-  color: #96F7DC;
+  /*color: #96F7DC;*/
+  filter: invert(90%) sepia(51%) saturate(345%) hue-rotate(82deg) brightness(99%) contrast(95%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort3,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort3,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort3 {
-  color: #96F7B4;
+  /*color: #96F7B4;*/
+  filter: invert(88%) sepia(11%) saturate(1334%) hue-rotate(76deg) brightness(104%) contrast(94%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort4,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort4,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort4 {
-  color: #6FF46F;
+  /*color: #6FF46F;*/
+  filter: invert(97%) sepia(48%) saturate(1304%) hue-rotate(49deg) brightness(100%) contrast(92%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort5,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort5,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort5 {
-  color: #73ED12;
+  /*color: #73ED12;*/
+  filter: invert(72%) sepia(63%) saturate(651%) hue-rotate(41deg) brightness(102%) contrast(93%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort6,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort6,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort6 {
-  color: #A4ED12;
+  /*color: #A4ED12;*/
+  filter: invert(96%) sepia(94%) saturate(7280%) hue-rotate(20deg) brightness(97%) contrast(91%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort7,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort7,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort7 {
-  color: #DAED12;
+  /*color: #DAED12;*/
+  filter: invert(87%) sepia(71%) saturate(7210%) hue-rotate(6deg) brightness(102%) contrast(86%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort8,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort8,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort8 {
-  color: #EDC212;
+  /*color: #EDC212;*/
+  filter: invert(77%) sepia(67%) saturate(2500%) hue-rotate(3deg) brightness(109%) contrast(86%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort9,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort9,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort9 {
-  color: #ED8F12;
+  /*color: #ED8F12;*/
+  filter: invert(70%) sepia(76%) saturate(3280%) hue-rotate(356deg) brightness(97%) contrast(91%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort10,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort10,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort10 {
-  color: #ED6312;
+  /*color: #ED6312;*/
+  filter: invert(57%) sepia(59%) saturate(7177%) hue-rotate(2deg) brightness(105%) contrast(86%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort11,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort11,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort11 {
-  color: #ED2912;
+  /*color: #ED2912;*/
+  filter: invert(21%) sepia(57%) saturate(7046%) hue-rotate(358deg) brightness(98%) contrast(90%);
 }
 
-.MMM-MeteoFrance .forecast-container .forecast-item .wind-container .Beaufort12,
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort12,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort12 {
-  color: #D5102D;
+  /*color: #D5102D;*/
+  filter: invert(20%) sepia(77%) saturate(3496%) hue-rotate(339deg) brightness(81%) contrast(109%);
 }
 
 
@@ -248,6 +261,7 @@
 
 .MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .time,
 .MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon-container,
+.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon-arrow-container,
 .MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon,
 .MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature,
 .MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature-container,

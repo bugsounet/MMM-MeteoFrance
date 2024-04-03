@@ -70,7 +70,7 @@
                 {% endif %}
                 <span class="wind-speed">{{ forecast.currently.wind.windSpeed }}</span>
                 {% if forecast.currently.wind.windIcon %}
-                  <img class="inline-icon" src="{{ forecast.currently.wind.windIcon }}" />
+                  <img class="inline-icon {{ forecast.currently.wind.Beaufort }}" src="{{ forecast.currently.wind.windIcon }}" />
                 {% endif %}
               </span>
             {% endif %}
@@ -136,8 +136,8 @@
 
                   <span class="wind-speed">{{ h.wind.windSpeed }}</span>
                 </span>
-                <span class="forecast-icon-container">
-                  <img class="inline-icon wind" src="{{ h.wind.windIcon }}" />
+                <span class="forecast-icon-arrow-container">
+                  <img class="inline-icon wind {{ h.wind.Beaufort }}" src="{{ h.wind.windIcon }}" />
                 </span>
               {% endif %}
 
@@ -169,8 +169,8 @@
 
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
                 </span>
-                <span class="forecast-icon-container">
-                  <img class="inline-icon" src="{{ d.wind.windIcon }}" />
+                <span class="forecast-icon-arrow-container">
+                  <img class="inline-icon {{ d.wind.Beaufort }}" src="{{ d.wind.windIcon }}" />
                 </span>
 
               {% endif %}
