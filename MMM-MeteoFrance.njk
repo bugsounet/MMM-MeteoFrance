@@ -47,9 +47,9 @@
         </div>
         <span class="temperature-container">
           <span class="wi wi-thermometer"></span>
-          <span class="high-temperature">{{ forecast.currently.tempRange.high }}</span>
-          <span class="temperature-separator dimmed">/</span>
           <span class="low-temperature">{{ forecast.currently.tempRange.low }}</span>
+          <span class="temperature-separator dimmed">/</span>
+          <span class="high-temperature">{{ forecast.currently.tempRange.high }}</span>
         </span>
         <div class="Precip-wind-contener">
             {% if config.display.Precipitation %}
@@ -104,6 +104,7 @@
               <span class="wind-header">
                 <img class="inline-icon wind" src="{{ inlineIcons.wind }}" />
               </span>
+              <span class="wind-arrow-header"><span class="wi wi-wind-direction"></span></span>
             {% endif %}
           </div>
 
@@ -128,10 +129,10 @@
                   {% endif %}
 
                   <span class="wind-speed">{{ h.wind.windSpeed }}</span>
-                  <img class="inline-icon wind" src="{{ h.wind.windIcon }}" />
-
                 </span>
-
+                <span class="forecast-icon-container">
+                  <img class="inline-icon wind" src="{{ h.wind.windIcon }}" />
+                </span>
               {% endif %}
 
             </div>
@@ -149,7 +150,13 @@
                 <img class="forecast-icon" src="{{ d.iconPath }}" />
               </span>
               <span class="temperature-container small">
-                <span class="temperature small">{{ d.temperature }}</span>
+                <span class="low-temperature">{{ d.tempRange.low }}</span>
+                {% if config.personalize.concise %}
+                  <span class="temperature-separator dimmed">/</span>
+                {% else %}
+                  <br>
+                {% endif %}
+                <span class="high-temperature">{{ d.tempRange.high }}</span>
               </span>
 
               {% if config.display.Wind %}
@@ -159,7 +166,9 @@
                   {% endif %}
 
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
-                  <img class="inline-icon wind" src="{{ d.wind.windIcon }}" />
+                </span>
+                <span class="forecast-icon-container">
+                  <img class="inline-icon" src="{{ d.wind.windIcon }}" />
                 </span>
 
               {% endif %}

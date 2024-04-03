@@ -54,6 +54,7 @@ Module.register("MMM-MeteoFrance", {
     this.error = null
     this.weatherData = null
     this.formattedWeatherData = null
+    this.last_update = null
   },
 
   getScripts: function() {
@@ -101,6 +102,8 @@ Module.register("MMM-MeteoFrance", {
   socketNotificationReceived: function(notification, payload) {
     switch (notification) {
       case "DATA_UPDATE":
+        if (this.last_update === payload.last_update) return
+        this.last_update = payload.last_update
         this.weatherData = payload
         this.error = null
         this.log("data:", this.weatherData)
@@ -156,6 +159,11 @@ Module.register("MMM-MeteoFrance", {
         //console.log("-->", date, this.weatherData.forecast[i].time)
         const dayForecast = this.weatherData.forecast.find((forecast) => forecast.time === date)
         //console.log(dayForecast)
+        const dayHours = this.searchDate(i, true)
+        //console.log("dayHours ----->", dayHours)
+        const tempRange = this.getTempMinMax(dayHours)
+        dayForecast.temp = tempRange
+        //console.log("dayForecast", dayForecast)
         dailies.push(this.forecastItemFactory(dayForecast, "daily"))
       }
 
@@ -179,15 +187,57 @@ Module.register("MMM-MeteoFrance", {
     }
   },
 
-  searchDate(days) {
+  getTempMinMax(hours) {
+    var ArrayOfTemp = []
+    tempRange= {}
+    for (var i = 1; i < hours.length; i++) {
+      var Temperature = this.weatherData.forecast.find((forecast) => forecast.time === hours[i])
+      if (Temperature) ArrayOfTemp.push(Temperature.temperature)
+    }
+
+    tempRange.min = Math.min(...ArrayOfTemp)
+    tempRange.max = Math.max(...ArrayOfTemp)
+    //console.log("tempRange", tempRange)
+    return tempRange
+  },
+
+  searchDate(days,array) {
     const now = new Date(Date.now())
     const day = now.getDate()
     const month = now.getMonth()
     const year = now.getFullYear()
 
-    const now12 = new Date(year,month,day,14,0,0)
-    const result = new Date(now12.setDate(now12.getDate() + days))
-    return result.toJSON();
+    const now14 = new Date(year,month,day,14,0,0)
+    const result14 = new Date(now14.setDate(now14.getDate() + days))
+    if (array) {
+      const now2 = new Date(year,month,day,2,0,0)
+      const now5 = new Date(year,month,day,5,0,0)
+      const now8 = new Date(year,month,day,8,0,0)
+      const now11 = new Date(year,month,day,11,0,0)
+      const now17 = new Date(year,month,day,17,0,0)
+      const now20 = new Date(year,month,day,20,0,0)
+      const now23 = new Date(year,month,day,23,0,0)
+
+      const result2 = new Date(now2.setDate(now2.getDate() + days))
+      const result5 = new Date(now5.setDate(now5.getDate() + days))
+      const result8 = new Date(now8.setDate(now8.getDate() + days))
+      const result11 = new Date(now11.setDate(now11.getDate() + days))
+      const result17 = new Date(now17.setDate(now17.getDate() + days))
+      const result20 = new Date(now20.setDate(now20.getDate() + days))
+      const result23 = new Date(now23.setDate(now23.getDate() + days))
+      return [
+        result2.toJSON(),
+        result5.toJSON(),
+        result8.toJSON(),
+        result11.toJSON(),
+        result14.toJSON(),
+        result17.toJSON(),
+        result20.toJSON(),
+        result23.toJSON()
+      ]
+    } else {
+      return result14.toJSON();
+    }
   },
 
   /*
@@ -216,7 +266,7 @@ Module.register("MMM-MeteoFrance", {
     if (type == "hourly") { //just display projected temperature for that hour
       fItem.temperature = Math.round(fData.temperature) + "°";
     } else { //display High / Low temperatures
-      fItem.temperature = Math.round(fData.temperature) + "°";
+      fItem.tempRange = this.formatHiLowTemperature(fData.temp.max,fData.temp.min);
     }
 
     // --------- Precipitation ---------
