@@ -45,30 +45,19 @@ module.exports = NodeHelper.create({
     else log("Weather Fetch data.")
     await getWeather(this.config.place)
       .then(weather => {
-        this.forecast = weather.weatherForecast
-        this.probability = weather.ProbabilityForecast
-        this.lastupdate = weather.last_update
         this.makeData(weather)
       })
       .catch (error => {
-        console.error("[METEOFRANCE]", error)
         this.sendError(error)
       })
-    /*
-    .then(
-  (weather) => {
-    let date = weather.last_update
-    let update = new Intl.DateTimeFormat('fr', {
-      dateStyle: 'long',
-      timeStyle: 'short',
-    }).format(date)
-    console.log("-->", update)
-  }
-  */
   },
 
   makeData: function(weather) {
-    if (!weather) return console.error("[METEOFRANCE **ERROR No Data**")
+    if (!weather) return console.error("[METEOFRANCE] **ERROR No Data**")
+    if (weather.properties.country !== "FR - France") {
+      this.sendError("Ce module est uniquement disponible pour les villes Française!")
+      return
+    }
     //log("Result:", weather)
     let date = weather.last_update
     let update = new Intl.DateTimeFormat('fr',
@@ -93,7 +82,7 @@ module.exports = NodeHelper.create({
   },
 
   sendError: function(error, message) {
-     console.error("[METEOFRANCE **ERROR** " + error, message ? message: "")
-     this.sendSocketNotification("ERROR", error)
+     console.error("[METEOFRANCE] **ERREUR** " + error, message ? message: "")
+     this.sendSocketNotification("ERROR", error.message || error)
   }
 });

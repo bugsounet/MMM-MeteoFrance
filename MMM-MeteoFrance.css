@@ -20,13 +20,13 @@
   color: #AAA;
 }
 
-.MMM-MeteoFrance .wrapper.colored .temperature .high-temperature,
-.MMM-MeteoFrance .wrapper.colored .temperature-container .high-temperature {
+.MMM-MeteoFrance .temperature .high-temperature,
+.MMM-MeteoFrance .temperature-container .high-temperature {
   color: #F8DD70;
 }
 
-.MMM-MeteoFrance .wrapper.colored .temperature .low-temperature,
-.MMM-MeteoFrance .wrapper.colored .temperature-container .low-temperature {
+.MMM-MeteoFrance .temperature .low-temperature,
+.MMM-MeteoFrance .temperature-container .low-temperature {
   color: #6FC4F5;
 }
 

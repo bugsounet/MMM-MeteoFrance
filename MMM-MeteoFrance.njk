@@ -1,4 +1,4 @@
-<div class="wrapper {{ config.personalize.forecastLayout }} {% if config.personalize.colored %}colored{% endif %} {% if config.display.InlineIcons %}inline-icons{% endif %} {% if config.personalize.forecastHeaderText %}with-forecast-header{% endif %}">
+<div class="wrapper {{ config.personalize.forecastLayout }} {% if config.display.InlineIcons %}inline-icons{% endif %} {% if config.personalize.forecastHeaderText %}with-forecast-header{% endif %}">
 
   {% if loading or error %}
       <div class="current-conditions-wrapper">
@@ -151,11 +151,7 @@
               </span>
               <span class="temperature-container small">
                 <span class="low-temperature">{{ d.tempRange.low }}</span>
-                {% if config.personalize.concise %}
-                  <span class="temperature-separator dimmed">/</span>
-                {% else %}
-                  <br>
-                {% endif %}
+                <span class="temperature-separator dimmed">/</span>
                 <span class="high-temperature">{{ d.tempRange.high }}</span>
               </span>
 

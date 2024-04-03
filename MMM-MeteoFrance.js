@@ -16,6 +16,7 @@ Module.register("MMM-MeteoFrance", {
     updateFadeSpeed: 500,
     place: "Paris",
     display: {
+      HeaderPlaceName: false,
       CurrentConditions: true,
       ExtraCurrentConditions: true,
       Summary: true,
@@ -35,15 +36,8 @@ Module.register("MMM-MeteoFrance", {
       hourlyForecastInterval: 3,
       maxHourliesToShow: 3,
       maxDailiesToShow: 3,
-      concise: false,
-      colored : true,
       forecastLayout: "table",
       forecastHeaderText: ""
-    },
-    labels: {
-      high: "Max:",
-      low: "Min:",
-      timeFormat: "kk[h]",
     }
   },
 
@@ -105,6 +99,7 @@ Module.register("MMM-MeteoFrance", {
         if (this.last_update === payload.last_update) return
         this.last_update = payload.last_update
         this.weatherData = payload
+        if (this.config.display.HeaderPlaceName) this.data.header = this.weatherData.properties.name;
         this.error = null
         this.log("data:", this.weatherData)
 
@@ -113,8 +108,8 @@ Module.register("MMM-MeteoFrance", {
         this.updateDom(this.config.updateFadeSpeed)
         break
       case "ERROR":
-        if (typeof payload == "object") {
-          if (payload.code = "EAI_AGAIN") this.error = "Connection lost..."
+        if (typeof payload === "object") {
+          if (payload.code === "EAI_AGAIN") this.error = "Connection lost..."
           else this.error= payload.code
         }
         else this.error = payload
@@ -255,7 +250,7 @@ Module.register("MMM-MeteoFrance", {
       fItem.day = moment(fData.time).format("ddd")
     } else { //hourly
       //time (e.g.: "5 PM")
-      fItem.time = moment(fData.time).format(this.config.labels.timeFormat);
+      fItem.time = moment(fData.time).format("kk[h]");
     }
 
     // --------- Icon ---------
@@ -301,8 +296,8 @@ Module.register("MMM-MeteoFrance", {
    */
   formatHiLowTemperature: function(h,l) {
     return {
-      high: (!this.config.personalize.concise ? this.config.labels.high + " " : "") + Math.round(h) + "°",
-      low: (!this.config.personalize.concise ? this.config.labels.low + " " : "") + Math.round(l) + "°"
+      high: Math.round(h) + "°",
+      low: Math.round(l) + "°"
     };
   },
 
