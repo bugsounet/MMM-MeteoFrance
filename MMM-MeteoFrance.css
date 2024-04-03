@@ -321,23 +321,20 @@
 .MMM-MeteoFrance .wrapper.table .forecast-container .header-row > span {
   height: 32px;
   font-size: 14px;
-  text-transform: uppercase;
-  vertical-align: bottom;
-  padding-bottom: 2px;
+  /*text-transform: uppercase;*/
+  /*vertical-align: bottom;*/
+  /*padding-bottom: 2px;*/
 }
 
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item > span:first-child {
   text-align: left;
 }
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item > span:last-child {
-  text-align: right;
-}
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .forecast-icon {
   width: 40px;
   height: 40px;
-  display: block;
+  /*display: block;*/
   vertical-align: middle;
 }
 
@@ -353,6 +350,11 @@
 }
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .header-row .temperature-header {
-  transform: translate(0, -1px);
+  /*transform: translate(0, -1px);*/
   font-size: 17px;
+}
+
+.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .wind-arrow-header {
+  /*transform: translate(0, -1px);*/
+  font-size: 24px;
 }
