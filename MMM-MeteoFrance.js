@@ -170,7 +170,7 @@ Module.register("MMM-MeteoFrance", {
         iconPath: this.weatherData.nowcast.weather_icon,
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
-        wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_icon),
+        wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
         feels: this.formatFeels(this.weatherData.nowcast.felt_temperature),
         sun: this.formatSun(this.weatherData.daily_forecast.sunrise_time, this.weatherData.daily_forecast.sunset_time),
         humidity: this.weatherData.nowcast.relative_humidity + "%",
@@ -264,11 +264,8 @@ Module.register("MMM-MeteoFrance", {
       fItem.tempRange = this.formatHiLowTemperature(fData.temp.max,fData.temp.min);
     }
 
-    // --------- Precipitation ---------
-    //fItem.precipitation = this.formatPrecipitation(fData.rain["1h"]);
-
     // --------- Wind ---------
-    fItem.wind = this.formatWind(fData.wind_speed, fData.wind_icon);
+    fItem.wind = this.formatWind(fData.wind_speed, 0, fData.wind_icon);
 
     return fItem;
   },
@@ -314,11 +311,12 @@ Module.register("MMM-MeteoFrance", {
   /*
     Returns a formatted data object for wind conditions
    */
-  formatWind: function(speed, icon) {
+  formatWind: function(speed, gust, icon) {
     var Beaufort = this.ms2Beaufort(speed)
 
     return {
       windSpeed: Math.round(speed) + " km/h",
+      windSpeedGust: gust ? Math.round(speed+gust) + " km/h" : 0,
       windIcon: icon
     };
   },

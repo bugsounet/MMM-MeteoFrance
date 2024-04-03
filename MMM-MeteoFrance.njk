@@ -75,6 +75,12 @@
               </span>
             {% endif %}
         </div>
+        {% if config.display.Wind and forecast.currently.wind.windSpeedGust %}
+          <div class="wind-alert-container">
+            <span class="wi wi-strong-wind"></span>
+            <span class="wind-speed-gust">RAFALES {{ forecast.currently.wind.windSpeedGust }}</span>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
 
@@ -104,7 +110,7 @@
               <span class="wind-header">
                 <img class="inline-icon wind" src="{{ inlineIcons.wind }}" />
               </span>
-              <span class="wind-arrow-header"><span class="wi wi-wind-direction"></span></span>
+              <span class="wind-arrow-header">&nbsp;</span>
             {% endif %}
           </div>
 

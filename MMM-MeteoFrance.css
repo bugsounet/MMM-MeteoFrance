@@ -63,6 +63,12 @@
   word-wrap: normal;
 }
 
+.MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wind-speed-gust {
+    color: white;
+    background-color: #ed1c24;
+    border-radius: 2px;
+    line-height: 2;
+}
 
 /* Inline icons */
 .MMM-MeteoFrance .inline-icon,
@@ -85,7 +91,8 @@
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-container,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .precipitation-container,
-.MMM-MeteoFrance .extra-current-conditions-wrapper .wind-container {
+.MMM-MeteoFrance .extra-current-conditions-wrapper .wind-container,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container {
   display: inline-block;
   white-space: nowrap;
   margin-left: auto;
@@ -96,6 +103,12 @@
 }
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-container .wi-thermometer {
+  font-size: 80%;
+  transform: translate(0, -1px);
+  margin-right: 5px;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wi-strong-wind {
   font-size: 80%;
   transform: translate(0, -1px);
   margin-right: 5px;
