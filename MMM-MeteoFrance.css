@@ -127,7 +127,7 @@
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort1,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort1 {
   /*color: #AEF1F9;*/
-  filter: invert(87%) sepia(9%) saturate(1258%) hue-rotate(157deg) brightness(105%) contrast(95%);
+  filter: invert(90%) sepia(25%) saturate(597%) hue-rotate(93deg) brightness(103%) contrast(94%);
 }
 
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort2,
@@ -163,7 +163,7 @@
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort7,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort7 {
   /*color: #DAED12;*/
-  filter: invert(87%) sepia(71%) saturate(7210%) hue-rotate(6deg) brightness(102%) contrast(86%);
+  filter: invert(84%) sepia(70%) saturate(644%) hue-rotate(7deg) brightness(102%) contrast(86%);
 }
 
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort8,
@@ -187,7 +187,7 @@
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort11,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container .Beaufort11 {
   /*color: #ED2912;*/
-  filter: invert(21%) sepia(57%) saturate(7046%) hue-rotate(358deg) brightness(98%) contrast(90%);
+  filter: invert(30%) sepia(84%) saturate(6374%) hue-rotate(356deg) brightness(96%) contrast(94%);
 }
 
 .MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon-arrow-container .Beaufort12,
