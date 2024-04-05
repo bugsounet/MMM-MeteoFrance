@@ -123,6 +123,7 @@ Module.register("MMM-MeteoFrance", {
 
   displayWeather: function(place, force) {
     if (this.last_update === this.weathers[place].last_update && !force) return
+    this.place = place
     this.last_update = this.weathers[place].last_update
     this.weatherData = this.weathers[place]
     if (this.config.display.HeaderPlaceName || this.weathers.length > 1) this.data.header = this.weatherData.properties.name
@@ -326,7 +327,7 @@ Module.register("MMM-MeteoFrance", {
    */
   formatPrecipitation: function(precipitation) {
     return {
-      accumulation: precipitation ?  precipitation + " " + this.getUnit("accumulationRain")  : "0 " +  this.getUnit("accumulationRain")
+      accumulation: precipitation ?  precipitation + " mm" : "0 mm"
     };
 
   },
@@ -343,36 +344,6 @@ Module.register("MMM-MeteoFrance", {
       windIcon: icon,
       Beaufort: "Beaufort"+Beaufort
     };
-  },
-
-  /*
-    Returns the units in use for the data pull
-   */
-  getUnit: function(metric) {
-    return this.units[metric]["metric"]
-  },
-
-  /*
-    Some display items need the unti beside them.  This returns the correct
-    unit for the given metric based on the unit set in use.
-    * standard, metric and imperial
-   */
-  units: {
-    accumulationRain: {
-      standard: "mm/h",
-      metric: "mm",
-      imperial: "in/h",
-    },
-    accumulationSnow: {
-      standard: "mm/h",
-      metric: "mm/h",
-      imperial: "in/h",
-    },
-    windSpeed: {
-      standard: "m/s",
-      metric: "km/h",
-      imperial: "mph"
-    }
   },
 
   kmh2Beaufort: function (speed) {
