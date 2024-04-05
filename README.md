@@ -1,5 +1,5 @@
-# MMM-Weather
+# MMM-MeteoFrance
 ---
 
-## This module is now in End Of Life.
+## This module is under coding
 
