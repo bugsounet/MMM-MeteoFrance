@@ -84,7 +84,7 @@ Module.register("MMM-MeteoFrance", {
       inlineIcons : {
         rain: this.file("resources/i-rain.svg"),
         wind: this.file("resources/i-wind.svg"),
-        uv: this.file("tresources/uv.png")
+        uv: this.file("resources/uv.png")
       },
       update: this.weatherData && this.weatherData.update ? this.weatherData.update : this.translate("LOADING")
     }
@@ -125,7 +125,7 @@ Module.register("MMM-MeteoFrance", {
     if (this.last_update === this.weathers[place].last_update && !force) return
     this.last_update = this.weathers[place].last_update
     this.weatherData = this.weathers[place]
-    if (this.config.display.HeaderPlaceName || force) this.data.header = this.weatherData.properties.name;
+    if (this.config.display.HeaderPlaceName || this.weathers.length > 1) this.data.header = this.weatherData.properties.name
     this.error = null
     this.log("data:", this.weatherData)
 
