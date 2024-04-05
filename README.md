@@ -1,17 +1,13 @@
 # MMM-Weather
 ---
 
-![](https://raw.githubusercontent.com/bugsounet/MMM-Weather/dev/logo.png)
+![](https://github.com/bugsounet/MMM-MeteoFrance/blob/dev/resources/logo.png?raw=true)
 
-`MMM-Weather` is weather module that displays current, hourly and daily forecast information using data from Open Weather API
+`MMM-MeteoFrancer` is weather module that displays current, hourly and daily forecast information using data from MeteoFrance API
 
 ## Screenshot
 
-![](https://raw.githubusercontent.com/bugsounet/MMM-Weather/dev/screenshot.png)
-
-## Installation, guides and updates
-
-Read the doc in [wiki](http://wiki.bugsounet.fr/en/MMM-Weather)
+![](https://raw.githubusercontent.com/bugsounet/MMM-MeteoFrance/dev/screenshot.png)
 
 ## Credits
   * Author:
