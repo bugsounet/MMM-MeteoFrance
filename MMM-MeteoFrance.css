@@ -3,8 +3,26 @@
 }
 
 .MMM-MeteoFrance .wrapper {
-  margin-top: -20px;
+  /*margin-top: -10px;*/
   width: 330px;
+}
+
+.MMM-MeteoFrance .loadingDisplayerLogo {
+  position: absolute;
+}
+
+.MMM-MeteoFrance .loadingLogo {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.MMM-MeteoFrance .loadingVideo {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .MMM-MeteoFrance .forecast-container .forecast-item .temperature,

@@ -4,11 +4,16 @@
       <div class="current-conditions-wrapper">
         <span class="current-conditions-wrapper">
           {% if error %}
-            <img class="current icon current" src="modules/MMM-MeteoFrance/icons/error.png" />
+            <img class="current icon current" src="https://meteofrance.com/modules/custom/mf_tools_common_theme_public/svg/weather/p33j.svg" />
             <div class="dimmed light small" style="margin-right: 20px">{{ phrases.error | safe }}</div>
           {% else %}
-            <img class="current icon current" src="http://openweathermap.org/img/wn/02d@2x.png" />
-            <span class="dimmed light small">{{ phrases.loading | safe }}</span>
+            <div class="loadingDisplayer">
+              <div class="loadingDisplayerLogo"><img class="loadingLogo" src="modules/MMM-MeteoFrance/resources/logo.png"></img></div>
+              <div class="loadingDisplayerVideo">
+                <video autoplay muted loop class="loadingVideo" src="modules/MMM-MeteoFrance/resources/splash_video.mp4"></video>
+                <span class="dimmed light small">{{ phrases.loading | safe }}</span>
+              </div>
+            </div>
           {% endif %}
         </span>
       </div>

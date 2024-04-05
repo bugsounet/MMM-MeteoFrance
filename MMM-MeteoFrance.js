@@ -1,7 +1,8 @@
-/* Magic Mirror
- * Module: MMM-Weather
+/*
+ * Module: MMM-MeteoFrance
  * from MMM-DarkSkyForecast (Jeff Clarke)
- * recoded for OpenWeatherMap
+ * from MMM-Weather (bugsounet)
+ * recoded for MeteoFrance
  *
  * @bugsounet
  * MIT Licensed.
@@ -13,7 +14,8 @@ Module.register("MMM-MeteoFrance", {
   defaults: {
     debug: false,
     updateInterval: 5 * 60 * 1000,
-    updateFadeSpeed: 500,
+    updateFadeSpeed: 1000,
+    rotateInterval: 30 * 1000,
     place: "Paris",
     display: {
       HeaderPlaceName: false,
@@ -49,6 +51,9 @@ Module.register("MMM-MeteoFrance", {
     this.weatherData = null
     this.formattedWeatherData = null
     this.last_update = null
+    this.weathers = []
+    this.first = true
+    this.place = 0
   },
 
   getScripts: function() {
@@ -77,9 +82,9 @@ Module.register("MMM-MeteoFrance", {
       config: this.config,
       forecast: this.formattedWeatherData,
       inlineIcons : {
-        rain: this.file("icons/i-rain.svg"),
-        wind: this.file("icons/i-wind.svg"),
-        uv: this.file("icons/uv.png")
+        rain: this.file("resources/i-rain.svg"),
+        wind: this.file("resources/i-wind.svg"),
+        uv: this.file("tresources/uv.png")
       },
       update: this.weatherData && this.weatherData.update ? this.weatherData.update : this.translate("LOADING")
     }
@@ -96,16 +101,13 @@ Module.register("MMM-MeteoFrance", {
   socketNotificationReceived: function(notification, payload) {
     switch (notification) {
       case "DATA_UPDATE":
-        if (this.last_update === payload.last_update) return
-        this.last_update = payload.last_update
-        this.weatherData = payload
-        if (this.config.display.HeaderPlaceName) this.data.header = this.weatherData.properties.name;
-        this.error = null
-        this.log("data:", this.weatherData)
-
-        //process weather data
-        this.formattedWeatherData = this.processWeatherData()
-        this.updateDom(this.config.updateFadeSpeed)
+        this.weathers = payload
+        if (this.first) {
+          this.displayWeather(0)
+          this.first = false
+          if (this.weathers.length > 1) this.displayWeatherRotate()
+        }
+        else if (this.weathers.length === 1) this.displayWeather(0)
         break
       case "ERROR":
         if (typeof payload === "object") {
@@ -117,6 +119,27 @@ Module.register("MMM-MeteoFrance", {
         this.updateDom(this.config.updateFadeSpeed)
         break
     }
+  },
+
+  displayWeather: function(place, force) {
+    if (this.last_update === this.weathers[place].last_update && !force) return
+    this.last_update = this.weathers[place].last_update
+    this.weatherData = this.weathers[place]
+    if (this.config.display.HeaderPlaceName || force) this.data.header = this.weatherData.properties.name;
+    this.error = null
+    this.log("data:", this.weatherData)
+
+    //process weather data
+    this.formattedWeatherData = this.processWeatherData()
+    this.updateDom(this.config.updateFadeSpeed)
+  },
+
+  displayWeatherRotate: function () {
+    this.rotote = setInterval(() => {
+      this.displayWeather(this.place,true)
+      this.place++
+      if (this.place > this.weathers.length-1) this.place = 0
+    }, this.config.rotateInterval)
   },
 
   /*

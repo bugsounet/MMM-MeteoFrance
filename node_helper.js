@@ -1,6 +1,7 @@
 /*
  * Module: MMM-MeteoFrance
  * from MMM-DarkSkyForecast (Jeff Clarke)
+ * from MMM-Weather (bugsounet)
  * recoded for MeteoFrance
  *
  * @bugsounet
@@ -15,7 +16,8 @@ module.exports = NodeHelper.create({
 
   start: function() {
     this.interval= null
-    this.first = true
+    this.weathers = []
+    this.weathersResult = []
   },
 
   validLayouts: ["tiled", "table"],
@@ -32,8 +34,15 @@ module.exports = NodeHelper.create({
     console.log("[METEOFRANCE] MMM-MeteoFrance Version:", require('./package.json').version)
     this.config = config
     if (this.config.debug) log = (...args) => { console.log("[METEOFRANCE]", ...args) }
+    if (typeof this.config.place === "object" && this.config.place.length) {
+      this.weathers = this.config.place
+    }
+    else if (typeof this.config.place === "string") {
+      this.weathers.push(this.config.place)
+    }
+    else return this.sendError("'place:' nom de ville manquante!")
     if (!this.validLayouts.includes(this.config.personalize.forecastLayout)) {
-      return this.sendError("'forecastLayout:' value is incorrect!")
+      return this.sendError("'forecastLayout:' valeur incorrecte!")
     }
     /** fetch loop **/
     this.fetchData()
@@ -41,36 +50,52 @@ module.exports = NodeHelper.create({
   },
 
   fetchData: async function() {
-    if (this.first) log("Loading data from meteofrance...")
-    else log("Weather Fetch data.")
-    await getWeather(this.config.place)
-      .then(weather => {
-        this.makeData(weather)
+    this.weathersResult = []
+    log("Weather Fetch all data...")
+    await Promise.all(this.weathers.map(
+      async place => {
+        log("Weather Fetch data for:", place)
+        let fetcher = await this.fetchWeather(place)
+        if (fetcher) {
+          this.weathersResult.push(fetcher);
+          log("Done:", place)
+        }
+        else log("No Data:", place)
       })
-      .catch (error => {
-        this.sendError(error)
-      })
+    ).catch(() => console.error("[METEOFRANCE] **ERROR No Data**"));
+    this.sendSocketNotification("DATA_UPDATE", this.weathersResult)
   },
 
-  makeData: function(weather) {
-    if (!weather) return console.error("[METEOFRANCE] **ERROR No Data**")
-    if (weather.properties.country !== "FR - France") {
-      this.sendError("Ce module est uniquement disponible pour les villes Française!")
-      return
-    }
-    //log("Result:", weather)
-    let date = weather.last_update
-    let update = new Intl.DateTimeFormat('fr',
-      {
-        dateStyle: 'long',
-        timeStyle: 'short',
-      }
-    ).format(date)
-    weather.update = update
-
-    this.sendSocketNotification("DATA_UPDATE", weather)
-    if (!this.first) log("Weather data updated.")
-    this.first = false
+  fetchWeather: async function(place) {
+    return new Promise (resolv => {
+      getWeather(place)
+        .then(weather => {
+          if (!weather) {
+            console.error("[METEOFRANCE] **ERROR No Data**")
+            resolv(null)
+            return
+          }
+          if (weather.properties.country !== "FR - France") {
+            this.sendError("Ce module est uniquement disponible pour les villes Française!")
+            resolv(null)
+            return
+          }
+          let date = weather.last_update
+          let update = new Intl.DateTimeFormat('fr',
+            {
+              dateStyle: 'long',
+              timeStyle: 'short',
+            }
+          ).format(date)
+          weather.update = update
+          log(`Fetched last update for ${place}:`, weather.update)
+          resolv(weather)
+        })
+        .catch (error => {
+          this.sendError(error)
+          resolv(null)
+        })
+    })
   },
 
   /** update process **/
