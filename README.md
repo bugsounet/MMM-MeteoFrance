@@ -1,4 +1,4 @@
-# MMM-Weather
+# MMM-MeteoFrance
 ---
 
 ![](https://github.com/bugsounet/MMM-MeteoFrance/blob/dev/resources/logo.png?raw=true)
