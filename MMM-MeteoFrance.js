@@ -20,7 +20,7 @@ Module.register("MMM-MeteoFrance", {
     display: {
       HeaderPlaceName: false,
       CurrentConditions: true,
-      Backgound: true,
+      Background: true,
       ExtraCurrentConditions: true,
       Summary: true,
       ForecastTableColumnHeaderIcons: true,

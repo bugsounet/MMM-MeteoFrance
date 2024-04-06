@@ -21,8 +21,6 @@ module.exports = NodeHelper.create({
     this.weathersResult = [];
   },
 
-  validLayouts: ["tiled", "table"],
-
   socketNotificationReceived (notification, payload){
     switch(notification) {
       case "SET_CONFIG":
@@ -42,9 +40,7 @@ module.exports = NodeHelper.create({
       this.weathers.push(this.config.place);
     }
     else return this.sendError("'place:' nom de ville manquante!");
-    if (!this.validLayouts.includes(this.config.personalize.forecastLayout)) {
-      return this.sendError("'forecastLayout:' valeur incorrecte!");
-    }
+
     /** fetch loop **/
     this.fetchData();
     this.scheduleUpdate(this.config.updateInterval);
