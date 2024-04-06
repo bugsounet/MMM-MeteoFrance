@@ -3,13 +3,13 @@
 
 ![](https://github.com/bugsounet/MMM-MeteoFrance/blob/dev/resources/logo.png?raw=true)
 
-`MMM-MeteoFrancer` is weather module that displays current, hourly and daily forecast information using data from MeteoFrance API
+`MMM-MeteoFrancer` est un module météo qui affiche des informations de prévisions actuelles, horaires et quotidiennes à l'aide des données de l'API MétéoFrance.
 
 ## Screenshot
 
 ![](https://raw.githubusercontent.com/bugsounet/MMM-MeteoFrance/dev/screenshot.png)
 
-## Credits
+## Crédits
   * Author:
     * @bugsounet
   * License: MIT
