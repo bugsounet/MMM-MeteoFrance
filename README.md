@@ -9,6 +9,67 @@
 
 ![](https://raw.githubusercontent.com/bugsounet/MMM-MeteoFrance/dev/screenshot.png)
 
+## Configuration
+
+### Minimale
+
+```js
+{
+  module: 'MMM-MeteoFrance',
+  position: "top_right",
+  animateIn: "fadeInRight",
+  animateOut: "fadeOutRight",
+  configDeepMerge: true,
+  config: {
+    place: "Paris"
+  }
+},
+```
+
+### Personalisée
+
+```js
+{
+  module: 'MMM-MeteoFrance',
+  position: "top_right",
+  animateIn: "fadeInRight",
+  animateOut: "fadeOutRight",
+  configDeepMerge: true,
+  config: {
+    debug: false,
+    updateInterval: 10 * 60 * 1000,
+    updateFadeSpeed: 1000,
+    rotateInterval: 30 * 1000,
+    place: "Paris",
+    display: {
+      HeaderPlaceName: false,
+      CurrentConditions: true,
+      Backgound: true,
+      ExtraCurrentConditions: true,
+      Summary: true,
+      ForecastTableColumnHeaderIcons: true,
+      HourlyForecast: true,
+      DailyForecast: true,
+      Precipitation: true,
+      Wind: true,
+      InlineIcons: true,
+      Feels: true,
+      SunCondition: true,
+      Humidity: true,
+      UV: true,
+      Beaufort: true
+    },
+    personalize: {
+      hourlyForecastInterval: 3,
+      maxHourliesToShow: 3,
+      maxDailiesToShow: 3,
+      forecastLayout: "table",
+      forecastHeaderText: ""
+    }
+  }
+},
+```
+
 ## Crédits
   * Author:
     * @bugsounet
