@@ -151,7 +151,7 @@ Module.register("MMM-MeteoFrance", {
   */
   processWeatherData () {
 
-    var summary = `${this.weatherData.nowcast.weather_description  }.`;
+    var summary = `${this.weatherData.nowcast.weather_description}.`;
 
     var hourlies = [];
     
@@ -191,7 +191,7 @@ Module.register("MMM-MeteoFrance", {
   
     return {
       currently : {
-        temperature: `${this.weatherData.nowcast.temperature  }°`,
+        temperature: `${this.weatherData.nowcast.temperature}°`,
         iconPath: this.weatherData.nowcast.weather_icon,
         background: this.weatherData.nowcast.weather_background,
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
@@ -199,7 +199,7 @@ Module.register("MMM-MeteoFrance", {
         wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
         feels: this.formatFeels(this.weatherData.nowcast.felt_temperature),
         sun: this.formatSun(this.weatherData.daily_forecast.sunrise_time, this.weatherData.daily_forecast.sunset_time),
-        humidity: `${this.weatherData.nowcast.relative_humidity  }%`,
+        humidity: `${this.weatherData.nowcast.relative_humidity}%`,
         uv: Math.round(this.weatherData.daily_forecast.uv_index)
       },
       summary : summary,
@@ -285,7 +285,7 @@ Module.register("MMM-MeteoFrance", {
     // --------- Temperature ---------
 
     if (type === "hourly") { //just display projected temperature for that hour
-      fItem.temperature = `${Math.round(fData.temperature)  }°`;
+      fItem.temperature = `${Math.round(fData.temperature)}°`;
     } else { //display High / Low temperatures
       fItem.tempRange = this.formatHiLowTemperature(fData.temp.max,fData.temp.min);
     }
@@ -297,7 +297,7 @@ Module.register("MMM-MeteoFrance", {
   },
 
   formatFeels (feels) {
-    return this.translate("FEELS", { DEGREE: `${Math.round(feels)  }°` });
+    return this.translate("FEELS", { DEGREE: `${Math.round(feels)}°` });
   },
 
   formatSun (Sunrise,Sunset) {
@@ -319,8 +319,8 @@ Module.register("MMM-MeteoFrance", {
    */
   formatHiLowTemperature (h,l) {
     return {
-      high: `${Math.round(h)  }°`,
-      low: `${Math.round(l)  }°`
+      high: `${Math.round(h)}°`,
+      low: `${Math.round(l)}°`
     };
   },
 
@@ -329,7 +329,7 @@ Module.register("MMM-MeteoFrance", {
    */
   formatPrecipitation (precipitation) {
     return {
-      accumulation: precipitation ?  `${precipitation  } mm` : "0 mm"
+      accumulation: precipitation ?  `${precipitation} mm` : "0 mm"
     };
 
   },
@@ -341,8 +341,8 @@ Module.register("MMM-MeteoFrance", {
     var Beaufort = this.kmh2Beaufort(speed);
 
     return {
-      windSpeed: `${Math.round(speed)  } km/h`,
-      windSpeedGust: gust ? `${Math.round(speed+gust)  } km/h` : 0,
+      windSpeed: `${Math.round(speed)} km/h`,
+      windSpeedGust: gust ? `${Math.round(speed+gust)} km/h` : 0,
       windIcon: icon,
       Beaufort: `Beaufort${Beaufort}`
     };

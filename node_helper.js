@@ -127,6 +127,7 @@ module.exports = NodeHelper.create({
       case "p11j":
       case "p12j":
       case "p13j":
+      case "p13bisj":
       case "p14j":
       case "p15j":
       case "p9n":
@@ -134,6 +135,7 @@ module.exports = NodeHelper.create({
       case "p11n":
       case "p12n":
       case "p13n":
+      case "p13bisn":
       case "p14n":
       case "p15n":
         background = "pluie";
@@ -199,6 +201,7 @@ module.exports = NodeHelper.create({
         break;
 
       default:
+        console.error(`[METEOFRANCE] Unkown icon: ${name}, Thanks to inform developer!`)
         background = "soleil_nuage";
         break;
     }
@@ -214,7 +217,7 @@ module.exports = NodeHelper.create({
   },
 
   sendError (error, message) {
-    console.error(`[METEOFRANCE] **ERREUR** ${  error}`, message ? message: "");
+    console.error(`[METEOFRANCE] **ERREUR** ${error}`, message ? message: "");
     this.sendSocketNotification("ERROR", error.message || error);
   }
 });

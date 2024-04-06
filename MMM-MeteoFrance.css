@@ -88,18 +88,15 @@
   color: #FFFFFF;
 }
 
-.MMM-MeteoFrance .temperature .low-temperature,
-.MMM-MeteoFrance .temperature-container .low-temperature {
-  color: #AAA;
-}
-
 .MMM-MeteoFrance .temperature .high-temperature,
-.MMM-MeteoFrance .temperature-container .high-temperature {
+.MMM-MeteoFrance .temperature-container .high-temperature,
+.MMM-MeteoFrance .temperature-uv-container .high-temperature {
   color: #F8DD70;
 }
 
 .MMM-MeteoFrance .temperature .low-temperature,
-.MMM-MeteoFrance .temperature-container .low-temperature {
+.MMM-MeteoFrance .temperature-container .low-temperature,
+.MMM-MeteoFrance .temperature-uv-container .low-temperature {
   color: #6FC4F5;
 }
 
@@ -147,11 +144,55 @@
     position: relative;
 }
 
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container {
+  margin-left: 5px;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .icon_uv {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAoCAYAAACSN4jeAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJqADAAQAAAABAAAAKAAAAAA7wp46AAAIJElEQVRYCd1Ya2xcRxWembvX9tpObFLbGzt24zSh6iOUpo3SipKWtBUtqGpUpFgRED/WD2iDf4Boi0RBTvhRkAIpIiSpvd5du2kpCSmoRE0oj7YCKqCkUZM6BfKo4zjB67jGjhNnvXvvDN+5u7O5NvsSmB8w1nrOmTlzzjfnnDkzu4z9vzdfc8+dVS3Bj83XPsV8KKpsDvilZAeUbfVXNQXumg+d8wKMSXmrYuoaxdhyydW8eG1egCnOrqS8pJhM0f8BkRWYUop3damsMv+ubdKdbW1GozUd/ddWNvd27xwKrr+9489mNiXuOcFZmZufS9NGqxq7H6ts7nmjouO56rnzmk8LjBbHojP7mZJt0pLBoeiRrdnAebj5Eyic4JwfYULs18rn9rVf3uvdcbo3jFzcxhRbK2ZmHs/kubTABm7aBxvsZ4zzy4ypcjj90bMzR57OpGQk3PJWkSmWe4uL7xsNtr4zFxDxBCr6weR3oe8zAObF0CToE1u2sLQhTQtsX0ODXbio7HtMqT0AN42+TCnWUdnU25rOKAFuq2ud8Ps+C2P/2j7R9ZonOj7xOGY2AUwJ+oucid11hasCXV087WFJi1arTuxyYjuEGpO7/N2Fvva74U5F4d41GFijJHtAMvVx7LuMKUww9QHj4jeCy1c317cfJcMb9u413jgwuR9y6xnjU4yrXUsLb3vqcPfquLY1t88KTAsvbuptsJS13vCY34gE/aerWwNLLUttRWVYBzB1Ws7dQ/Epxo1DwmtujexuHPVtCqyUXD7PhXh2NNy20y2bjs4LGC0kD9Hua1qCdTFb7mNM3uFSOA1F4/AaOn4NQluUmOM2RiKGt3AVgdM6XOsyknkDIw01HS9UxKKXBkBWEY9DMQ4srwjDfI4xO6K4Eso2arm0mjF7P8K/kOQYEwfLy4o2nvzB5y8m+Nz/PblFEhK02x2ner4FDyxKrhn1cP79kVDb05RzLj1HkOwHB4ZOf4FZ9jcxXsW5vHdi6vJToJ9wyWUlUx4jwz3DgZoZUWTTioJ43HM+5D+rV1e39dwYj7GfwxPL4aoIN3jnhXAbQpq5VTX2bLWZ+hKMfAghfs80+af+3tt2Rq9w0sI0LeILmDLPdzcO6TkHWH1zqPySsn4EZgnyI1FCODMQpkEk6qfJI7gFOpWyn0FhFFzwH18It2/USjL1VEaqmnoOwZ2fRNmJCcVaR/vb95ATfvh+4EVs8gaUoVTJgn27RJh3DIZbos7gtLIexjG/E4o+AiM3Ox/FbkCBubnSH1pFBvB5hEDBAC5snrG6u0HShrghXsIYHKcKoK+T5necCa0FoDX4XLXn2OUVl3j8fpJxgBVzz8vYDV0p78LwAH04U++i+h8bC/nfdgww9SbkxwBuooQZCGl+TZqFL2MjhyE9JDh3Qr/UvOVN1LJR1LvjKXucH0Os3vItLX+VNDuhJIK8UtseWJIpx0iGXqjKW3r0ws6GS8Tn23xf7S+RYzO3Ify/da+hh0KMcafIUo6de3bTWXICyaROZXJg2L3QTa/o3LNwciq6pCg6NYjxWcBWdL5SOHV5ZC2TPBIJtxxzr6N82nUmtBJjC9zjRLuTnXje3Uid01KJpwcy9RMXpw/gtRGOWvZBqvxuucmLw9ts2/qpLa2X6O3vntsx2LvRlvYhPB8DlS2BJvdcNjovYLRrRHoayVqMoroyHleb3UolEhJ/pUiIFbZST9KlreeRp/SWWwCBaiXVY7WtAV0HtUjaPk9gXHo460NCTtHJhLEHfP7gdVqjh3ueRxInap5iq4+/fyp1XRXa5q8gR7cFElp99IrNH9brsvV5ASMFFcvK9uMMnyAanqvilqwgmlok5P8jBhPvMM5qlBCpl+lwf9M5pPMBksO6Qs7kTUTnankDG+hqiDElIkmFlVKo2lnKhfibw5NHlbpl1hwXCdCJwetnzWVg8gZG5QRhLE/qmRZS/GOWTqmci53GlC31BhwR5NcSLYt7flzT2fq8gfma+65DUdTGx3iBHNGKqZQg7250eDzHheB/0XN0cHCa79G8YpaTb5rP1OcNTLL4E/Da8qSi08aCskGtFPWtJXm9ALs6WWDw9/TczsHAfQCd+BLM2ZBHGbOKrJab2+cFrNrfuxphfDCxmI8xU24f3t6AOxNfMhr7cPFLPwJYAAAzuFX7zgZbz9McHgdFUrEnAbqSeDwKfj3S3/YnonO1nMAot+K2/AoMX+so4+wPK+uu/4VWHBUxgOJ08ePUiXeKi0vDem6a2Q9iQ7cneH7SEMY2PZerzwls3ZbXDSj/MClSjE8IZn779a51zhuKxlAKVgGR4dBc7R7a9bnUoYC3cDqVPjC/HAn5j5NcPi0nsBPDJxcjBl5ShlCNohac04rp2w9u3MSJ43wcT5xU0jsySl2tWQZ/W6/Lp88JLGZ5LHgF9h3vCMuMF2jFezdswG2U/BFFKY+QslDPJeTVjObxMnM2p/lcfU5gm+ubR4FqmhQh3xYLiy3TSulFgsQ+k+QXWja7Vc9RLw28t5JNSblG0/n0OYE535SVSoSBs1Ip+dfotGnlXKjfA2CUeNBNdf7eGj3nkeIw4h9J8PweX0swdYdqmUx9TmC0sMA0nkGeOfck2LorzEp5xust2QOPHiU59MuiUt1FNLW7Hyp9DdcFvXzRZJ1U8pEEnft/XsDOB1v/ip2/AJ8MI54Tj9ZfrUV0CoVk34HXIsi2o4sEP6TN0m8gHpN/HfVrDGNDXCro+C+0xc2heqpr6VT7vthflemnKgo9Pa/TrfufG/sn185FRytrdC4AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: yellow;
+    border-radius: 8px;
+    width: 16px;
+    height: 16px;
+    transform: translate(0, -5px);
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv0,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv1,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv2 {
+  color: green;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv3,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv4,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv5 {
+  color: yellow;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv6,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv7 {
+  color: orange;;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv8,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv9,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv10 {
+  color: red;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv11,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv12 {
+  color: mediumpurple;
+}
+
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wind-speed-gust {
     color: white;
     background-color: #ed1c24;
-    border-radius: 2px;
-    line-height: 2;
+    border-radius: 5px;
+    line-height: 2.5;
+    padding: 5px;
 }
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .feels-sun-container .inline-icon {
@@ -160,7 +201,7 @@
     transform: translate(0, -5px);
 }
 
-.MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-container,
+.MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-uv-container,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .precipitation-container,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-container,
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container {
@@ -169,14 +210,10 @@
   margin-left: auto;
 }
 
-.MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener {
-  display: flex;
-}
-
-.MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-container .wi-thermometer {
+.MMM-MeteoFrance .extra-current-conditions-wrapper .temperature-uv-container .wi-thermometer {
   font-size: 80%;
   transform: translate(0, -1px);
-  margin-right: 5px;
+  /*margin-right: 5px;*/
 }
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wi-strong-wind {
@@ -282,9 +319,18 @@
 }
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .feels-sun-container .wi-humidity {
-  color: #167ac6;
+  color: #0091ff;
   font-size: 80%;
   transform: translate(0, -1px);
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wi-raindrop {
+  color: #0091ff;
+  vertical-align: middle;
+}
+
+.MMM-MeteoFrance .extra-current-conditions-wrapper .Precip-wind-contener .wind-container {
+  margin-left: 5px;
 }
 
 /* Summary */
@@ -444,6 +490,10 @@
 }
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .header-row .temperature-header {
+  font-size: 17px;
+}
+
+.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .wind-header {
   font-size: 17px;
 }
 

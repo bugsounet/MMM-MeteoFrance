@@ -45,22 +45,26 @@
           <span class="wi wi-humidity"></span>
           <span class="humidity">  {{ forecast.currently.humidity }}</span>
         {% endif %}
-        {% if config.display.UV %}
-          <img class="inline-icon uv" src="{{ inlineIcons.uv }}" />
-          <span class="uv">  {{ forecast.currently.uv }}</span>
-        {% endif %}
         </div>
-        <span class="temperature-container">
-          <span class="wi wi-thermometer"></span>
-          <span class="low-temperature">{{ forecast.currently.tempRange.low }}</span>
-          <span class="temperature-separator dimmed">/</span>
-          <span class="high-temperature">{{ forecast.currently.tempRange.high }}</span>
+        <span class="temperature-uv-container">
+          <span class="temp-container">
+            <span class="wi wi-thermometer"></span>
+            <span class="low-temperature">{{ forecast.currently.tempRange.low }}</span>
+            <span class="temperature-separator">/</span>
+            <span class="high-temperature">{{ forecast.currently.tempRange.high }}</span>
+          </span>
+          {% if config.display.UV %}
+          <span class="uv-container">
+            <span class="inline-icon icon_uv"></span>
+            <span class="uv{{ forecast.currently.uv }}">  {{ forecast.currently.uv }}</span>
+          </span>
+          {% endif %}
         </span>
         <div class="Precip-wind-contener">
             {% if config.display.Precipitation %}
               <span class="precipitation-container">
                 {% if (config.display.InlineIcons) %}
-                  <img class="inline-icon rain" src="{{ inlineIcons.rain }}" />
+                  <span class="wi wi-raindrop"></span>
                 {% endif %}
                 {% if forecast.currently.precipitation.accumulation %}
                   <span class="pop">{{ forecast.currently.precipitation.accumulation }}</span>
@@ -71,7 +75,7 @@
             {% if config.display.Wind %}
               <span class="wind-container">
                 {% if (config.display.InlineIcons) %}
-                  <img class="inline-icon" src="{{ inlineIcons.wind }}" />
+                  <span class="wi wi-strong-wind"></span>
                 {% endif %}
                 <span class="wind-speed">{{ forecast.currently.wind.windSpeed }}</span>
                 {% if forecast.currently.wind.windIcon %}
@@ -82,7 +86,7 @@
         </div>
         {% if config.display.Wind and forecast.currently.wind.windSpeedGust %}
           <div class="wind-alert-container">
-            <span class="wi wi-strong-wind"></span>
+            <span class="fa-solid fa-wind"></span>
             <span class="wind-speed-gust">RAFALES {{ forecast.currently.wind.windSpeedGust }}</span>
           </div>
         {% endif %}
@@ -113,7 +117,7 @@
 
             {% if config.display.Wind %}
               <span class="wind-header">
-                <img class="inline-icon wind" src="{{ inlineIcons.wind }}" />
+                <span class="wi wi-strong-wind"></span>
               </span>
               <span class="wind-arrow-header">&nbsp;</span>
             {% endif %}
@@ -162,7 +166,7 @@
               </span>
               <span class="temperature-container small">
                 <span class="low-temperature">{{ d.tempRange.low }}</span>
-                <span class="temperature-separator dimmed">/</span>
+                <span class="temperature-separator">/</span>
                 <span class="high-temperature">{{ d.tempRange.high }}</span>
               </span>
 
