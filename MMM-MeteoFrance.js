@@ -13,7 +13,7 @@ Module.register("MMM-MeteoFrance", {
   requiresVersion: "2.27.0",
   defaults: {
     debug: false,
-    updateInterval: 5 * 60 * 1000,
+    updateInterval: 10 * 60 * 1000,
     updateFadeSpeed: 1000,
     rotateInterval: 30 * 1000,
     place: "Paris",
@@ -192,6 +192,7 @@ Module.register("MMM-MeteoFrance", {
       "currently" : {
         temperature: this.weatherData.nowcast.temperature + "°",
         iconPath: this.weatherData.nowcast.weather_icon,
+        background: this.weatherData.nowcast.weather_background,
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
         wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
