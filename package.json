@@ -1,29 +1,29 @@
 {
-  "name": "MMM-Weather",
-  "version": "1.0.6",
-  "description": "Magic Mirror module that gets weather forecast data from OpenWeatherMap",
-  "main": "MMM-Weather.js",
+  "name": "MMM-MeteoFrance",
+  "version": "1.0.0",
+  "description": "MagicMirror² module that gets weather forecast data from Meteo France",
+  "main": "MMM-MeteoFrance.js",
   "scripts": {
     "preinstall": "installer/preinstall.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bugsounet/MMM-Weather"
+    "url": "git+https://github.com/bugsounet/MMM-MeteoFrance"
   },
   "keywords": [
     "magicmirror",
     "weather",
-    "openweather"
+    "meteofrance",
+    "french"
   ],
   "author": [
-    "Jeff Clarke",
     "bugsounet"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bugsounet/MMM-Weather/issues"
+    "url": "https://github.com/bugsounet/MMM-MeteoFrance/issues"
   },
-  "homepage": "https://github.com/bugsounet/MMM-Weather#readme",
+  "homepage": "https://github.com/bugsounet/MMM-MeteoFrance#readme",
   "dependencies": {
     "meteofrance_api": "^1.2.2",
     "weathericons": "^2.1.0"
