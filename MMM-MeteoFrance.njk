@@ -1,4 +1,3 @@
-{% if not loading or error %}<div class="background {{ forecast.currently.background }}"></div>{% endif %}
 <div class="wrapper {{ config.personalize.forecastLayout }} {% if config.display.InlineIcons %}inline-icons{% endif %} {% if config.personalize.forecastHeaderText %}with-forecast-header{% endif %}">
 
   {% if loading or error %}
@@ -23,7 +22,7 @@
 
     {# -------------- Current Conditions -------------- #}
     {% if config.display.CurrentConditions %}
-
+        <div class="background {{ forecast.currently.background }}"></div>
         <span class="current-conditions-wrapper">
           <img class="current icon current" src="{{ forecast.currently.iconPath }}" />
           <span class="current temperature bright large light">{{ forecast.currently.temperature }}</span>

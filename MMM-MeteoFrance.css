@@ -3,22 +3,27 @@
 }
 
 .MMM-MeteoFrance .wrapper {
-  width: 330px;
-  position: relative;
-  padding: 10px;
-  text-align: right;
+    width: 330px;
+    position: relative;
+    text-align: right;
+    color: white;
 }
 
 .MMM-MeteoFrance .background {
-	border-radius: 10px;
-	width: -webkit-fill-available;
-	height: -webkit-fill-available;
-	position: absolute;
-	opacity: 0.6;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-    margin-bottom: var(--gap-modules);
+    border-radius: 10px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    position: absolute;
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: BackgroundFadeIn 2s;
+}
+
+@keyframes BackgroundFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.7; }
 }
 
 .MMM-MeteoFrance .background.soleil {
@@ -74,6 +79,8 @@
 .MMM-MeteoFrance .current-conditions-wrapper {
     display: block;
     text-align: center;
+    position: relative;
+    padding: 0 10px 0 10px;
  }
 
 .MMM-MeteoFrance .forecast-container .forecast-item .temperature,
@@ -101,9 +108,10 @@
 }
 
 .MMM-MeteoFrance .attribution {
-  font-size: 10px;
+  font-size: 12px;
   text-align: right;
-  margin: 10px 10px 0 0;
+  padding: 10px;
+  position: relative;
 }
 
 /* Current Conditions */
@@ -133,8 +141,10 @@
 /* Extra Current Conditions */
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper {
-  display: block;
-  word-wrap: normal;
+    display: block;
+    word-wrap: normal;
+    padding: 0 10px 0 10px;
+    position: relative;
 }
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wind-speed-gust {
@@ -280,7 +290,8 @@
 /* Summary */
 
 .MMM-MeteoFrance .summary {
-  margin: 10px 0;
+  position: relative;
+  padding: 10px;
 }
 
 
@@ -376,6 +387,7 @@
   font-size: 17px;
   line-height: 1;
   border-bottom: solid 1px #222;
+  position: relative;
 }
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item,
@@ -403,8 +415,6 @@
   height: 40px;
   white-space: nowrap;
 }
-
-
 
 .MMM-MeteoFrance .wrapper.table .forecast-container .header-row > span {
   height: 32px;
