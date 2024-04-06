@@ -9,119 +9,119 @@
  */
 
 var NodeHelper = require("node_helper");
+
 var log = (...args) => { /* do nothing */ };
-const {getWeather} = require('meteofrance_api')
+const { getWeather } = require("meteofrance_api");
 
 module.exports = NodeHelper.create({
 
-  start: function() {
-    this.interval= null
-    this.weathers = []
-    this.weathersResult = []
+  start () {
+    this.interval= null;
+    this.weathers = [];
+    this.weathersResult = [];
   },
 
   validLayouts: ["tiled", "table"],
 
-  socketNotificationReceived: function(notification, payload){
+  socketNotificationReceived (notification, payload){
     switch(notification) {
-      case 'SET_CONFIG':
-        this.initialize(payload)
-        break
+      case "SET_CONFIG":
+        this.initialize(payload);
+        break;
     }
   },
 
-  initialize: function(config) {
-    console.log("[METEOFRANCE] MMM-MeteoFrance Version:", require('./package.json').version)
-    this.config = config
-    if (this.config.debug) log = (...args) => { console.log("[METEOFRANCE]", ...args) }
+  initialize (config) {
+    console.log("[METEOFRANCE] MMM-MeteoFrance Version:", require("./package.json").version);
+    this.config = config;
+    if (this.config.debug) log = (...args) => { console.log("[METEOFRANCE]", ...args); };
     if (typeof this.config.place === "object" && this.config.place.length) {
-      this.weathers = this.config.place
+      this.weathers = this.config.place;
     }
     else if (typeof this.config.place === "string") {
-      this.weathers.push(this.config.place)
+      this.weathers.push(this.config.place);
     }
-    else return this.sendError("'place:' nom de ville manquante!")
+    else return this.sendError("'place:' nom de ville manquante!");
     if (!this.validLayouts.includes(this.config.personalize.forecastLayout)) {
-      return this.sendError("'forecastLayout:' valeur incorrecte!")
+      return this.sendError("'forecastLayout:' valeur incorrecte!");
     }
     /** fetch loop **/
-    this.fetchData()
-    this.scheduleUpdate(this.config.updateInterval)
+    this.fetchData();
+    this.scheduleUpdate(this.config.updateInterval);
   },
 
-  fetchData: async function() {
-    this.weathersResult = []
-    log("Weather Fetch all data...")
+  async fetchData () {
+    this.weathersResult = [];
+    log("Weather Fetch all data...");
     await Promise.all(this.weathers.map(
-      async place => {
-        log("Weather Fetch data for:", place)
-        let fetcher = await this.fetchWeather(place)
+      async (place) => {
+        log("Weather Fetch data for:", place);
+        let fetcher = await this.fetchWeather(place);
         if (fetcher) {
           this.weathersResult.push(fetcher);
-          log("Done:", place)
+          log("Done:", place);
         }
-        else log("No Data:", place)
-      })
-    ).catch(() => console.error("[METEOFRANCE] **ERROR No Data**"));
-    this.sendSocketNotification("DATA_UPDATE", this.weathersResult)
+        else log("No Data:", place);
+      }
+    )).catch(() => console.error("[METEOFRANCE] **ERROR No Data**"));
+    this.sendSocketNotification("DATA_UPDATE", this.weathersResult);
   },
 
-  fetchWeather: async function(place) {
-    return new Promise (resolv => {
+  async fetchWeather (place) {
+    return new Promise ((resolv) => {
       getWeather(place)
-        .then(weather => {
+        .then((weather) => {
           if (!weather) {
-            console.error("[METEOFRANCE] **ERROR No Data**")
-            resolv(null)
-            return
+            console.error("[METEOFRANCE] **ERROR No Data**");
+            resolv(null);
+            return;
           }
           if (weather.properties.country !== "FR - France") {
-            this.sendError("Ce module est uniquement disponible pour les villes Française!")
-            resolv(null)
-            return
+            this.sendError("Ce module est uniquement disponible pour les villes Française!");
+            resolv(null);
+            return;
           }
-          let date = weather.last_update
-          let update = new Intl.DateTimeFormat('fr',
+          let date = weather.last_update;
+          let update = new Intl.DateTimeFormat("fr",
             {
-              dateStyle: 'long',
-              timeStyle: 'short',
-            }
-          ).format(date)
-          weather.update = update
+              dateStyle: "long",
+              timeStyle: "short"
+            }).format(date);
+          weather.update = update;
           if (weather.nowcast?.weather_icon) {
-            weather.nowcast.weather_background = this.searchBackground(weather.nowcast.weather_icon)
+            weather.nowcast.weather_background = this.searchBackground(weather.nowcast.weather_icon);
           }
-          log(`Fetched last update for ${place}:`, weather.update)
-          resolv(weather)
+          log(`Fetched last update for ${place}:`, weather.update);
+          resolv(weather);
         })
-        .catch (error => {
-          this.sendError(error)
-          resolv(null)
-        })
-    })
+        .catch ((error) => {
+          this.sendError(error);
+          resolv(null);
+        });
+    });
   },
 
-  searchBackground(icon) {
-    const name = icon.split("https://meteofrance.com/modules/custom/mf_tools_common_theme_public/svg/weather/")[1].split(".")[0]
-    var background = null
+  searchBackground (icon) {
+    const name = icon.split("https://meteofrance.com/modules/custom/mf_tools_common_theme_public/svg/weather/")[1].split(".")[0];
+    var background = null;
     switch(name) {
       case "p1j":
-        background = "soleil"
-        break
+        background = "soleil";
+        break;
       case "p2j":
       case "p3j":
       case "p4j":
       case "p5j":
-        background = "soleil_nuage"
-        break
+        background = "soleil_nuage";
+        break;
       case "p6j":
       case "p7j":
       case "p8j":
       case "p6n":
       case "p7n":
       case "p8n":
-        background = "brouilard"
-        break
+        background = "brouilard";
+        break;
       case "p9j":
       case "p10j":
       case "p11j":
@@ -136,12 +136,12 @@ module.exports = NodeHelper.create({
       case "p13n":
       case "p14n":
       case "p15n":
-        background = "pluie"
-        break
+        background = "pluie";
+        break;
       case "p16j":
       case "p16n":
-        background = "orage"
-        break
+        background = "orage";
+        break;
       case "p17j":
       case "p18j":
       case "p19j":
@@ -156,8 +156,8 @@ module.exports = NodeHelper.create({
       case "p21n":
       case "p22n":
       case "p23n":
-        background = "neige"
-        break
+        background = "neige";
+        break;
       case "p24j":
       case "p25j":
       case "p26j":
@@ -172,49 +172,49 @@ module.exports = NodeHelper.create({
       case "p28n":
       case "p29n":
       case "p30n":
-        background = "orage"
-        break
+        background = "orage";
+        break;
       case "p31j":
       case "p31n":
-        background = "soleil_nuage"
+        background = "soleil_nuage";
         /* sable */
-        break
+        break;
       case "p32j":
       case "p33j":
       case "p34j":
       case "p32n":
       case "p33n":
       case "p34n":
-        background = "orage"
-        break
+        background = "orage";
+        break;
 
       case "p1n":
-        background = "lune"
-        break
+        background = "lune";
+        break;
       case "p2n":
       case "p3n":
       case "p4n":
       case "p5n":
-        background = "lune_nuage"
-        break
+        background = "lune_nuage";
+        break;
 
       default:
-        background = "soleil_nuage"
-        break
+        background = "soleil_nuage";
+        break;
     }
-    return background
+    return background;
   },
 
   /** update process **/
-  scheduleUpdate: function(delay) {
-    clearInterval(this.interval)
+  scheduleUpdate (delay) {
+    clearInterval(this.interval);
     this.interval = setInterval(() => {
-      this.fetchData()
-    }, delay)
+      this.fetchData();
+    }, delay);
   },
 
-  sendError: function(error, message) {
-     console.error("[METEOFRANCE] **ERREUR** " + error, message ? message: "")
-     this.sendSocketNotification("ERROR", error.message || error)
+  sendError (error, message) {
+    console.error(`[METEOFRANCE] **ERREUR** ${  error}`, message ? message: "");
+    this.sendSocketNotification("ERROR", error.message || error);
   }
 });
