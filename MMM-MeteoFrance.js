@@ -28,7 +28,6 @@ Module.register("MMM-MeteoFrance", {
       DailyForecast: true,
       Precipitation: true,
       Wind: true,
-      InlineIcons: true,
       Feels: true,
       SunCondition: true,
       Humidity: true,
@@ -38,9 +37,7 @@ Module.register("MMM-MeteoFrance", {
     personalize: {
       hourlyForecastInterval: 3,
       maxHourliesToShow: 3,
-      maxDailiesToShow: 3,
-      forecastLayout: "table",
-      forecastHeaderText: ""
+      maxDailiesToShow: 3
     }
   },
 
@@ -82,11 +79,6 @@ Module.register("MMM-MeteoFrance", {
       error: this.error ? true: false,
       config: this.config,
       forecast: this.formattedWeatherData,
-      inlineIcons : {
-        rain: this.file("resources/i-rain.svg"),
-        wind: this.file("resources/i-wind.svg"),
-        uv: this.file("resources/uv.png")
-      },
       update: this.weatherData && this.weatherData.update ? this.weatherData.update : this.translate("LOADING")
     };
   },

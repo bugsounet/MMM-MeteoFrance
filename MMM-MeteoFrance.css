@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    animation: BackgroundFadeIn 2s;
+    animation: BackgroundFadeIn 3s;
 }
 
 @keyframes BackgroundFadeIn {
@@ -125,8 +125,7 @@
 }
 
 /* Inline icons */
-.MMM-MeteoFrance .inline-icon,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .inline-icon {
+.MMM-MeteoFrance .inline-icon {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -341,90 +340,7 @@
 }
 
 
-/* Forecast Header */
-
-.MMM-MeteoFrance .module-header.forecast-header {
-  margin-top: 20px;
-  margin-bottom: 0;
-}
-
 /* ------------ Forecast ------------ */
-
-/* Tiled Layout */
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  margin-bottom: 0 30px;
-  border-top: solid 1px #222;
-}
-
-.MMM-MeteoFrance .wrapper.with-forecast-header.tiled .forecast-container {
-  border-top: none;
-}
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item {
-  flex-grow: 1;
-  flex-shrink: 1;
-  min-width: 100px;
-  padding: 10px 5px 10px 5px;
-  border-bottom: solid 1px #222;
-}
-
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container * {
-  text-align: center;
-}
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .time,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon-arrow-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .precipitation-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .wind-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .day-name {
-  display: block;
-  margin: auto;
-}
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .forecast-icon {
-  width: 70px;
-  height: 70px;
-  margin: 4px auto;
-}
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .time,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .day-name {
-  font-size: 17px;
-  text-transform: uppercase;
-}
-
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .wind-speed {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .temperature-container {
-  font-size: 22px;
-  padding: 4px 0;
-}
-
-
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .precipitation-container,
-.MMM-MeteoFrance .wrapper.tiled .forecast-container .forecast-item .wind-container {
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-/* ------------ Table Layout ------------ */
 
 .MMM-MeteoFrance .wrapper.table .forecast-container {
   display: table;
@@ -442,7 +358,6 @@
   border-top: solid 1px #222;
 }
 
-.MMM-MeteoFrance .wrapper.with-forecast-header.table .forecast-container > div:first-child,
 .MMM-MeteoFrance .wrapper.table .forecast-container .header-row {
   border-top: none;
 }

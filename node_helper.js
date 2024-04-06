@@ -267,7 +267,7 @@ module.exports = NodeHelper.create({
         break;
 
       default:
-        console.error(`[METEOFRANCE] Unkown icon: ${name}, Thanks to inform developer!`)
+        console.error(`[METEOFRANCE] Unkown icon: ${name}, Thanks to inform developer!`);
         background = "soleil_nuage";
         break;
     }

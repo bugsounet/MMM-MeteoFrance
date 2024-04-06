@@ -1,4 +1,4 @@
-<div class="wrapper {{ config.personalize.forecastLayout }} {% if config.display.InlineIcons %}inline-icons{% endif %} {% if config.personalize.forecastHeaderText %}with-forecast-header{% endif %}">
+<div class="wrapper table">
 
   {% if loading or error %}
       <div class="current-conditions-wrapper">
@@ -63,9 +63,7 @@
         <div class="Precip-wind-contener">
             {% if config.display.Precipitation %}
               <span class="precipitation-container">
-                {% if (config.display.InlineIcons) %}
                   <span class="wi wi-raindrop"></span>
-                {% endif %}
                 {% if forecast.currently.precipitation.accumulation %}
                   <span class="pop">{{ forecast.currently.precipitation.accumulation }}</span>
                 {% endif %}
@@ -74,9 +72,7 @@
 
             {% if config.display.Wind %}
               <span class="wind-container">
-                {% if (config.display.InlineIcons) %}
-                  <span class="wi wi-strong-wind"></span>
-                {% endif %}
+                <span class="wi wi-strong-wind"></span>
                 <span class="wind-speed">{{ forecast.currently.wind.windSpeed }}</span>
                 {% if forecast.currently.wind.windIcon %}
                   <img class="inline-icon {{ forecast.currently.wind.Beaufort }}" src="{{ forecast.currently.wind.windIcon }}" />
@@ -100,16 +96,11 @@
       </div>
     {% endif %}
 
-    {# -------------- Forecast Title -------------- #}
-    {% if not (config.personalize.forecastHeaderText == "") and (config.display.HourlyForecast or config.display.DailyForecast) %}
-      <header class="module-header forecast-header">{{ config.personalize.forecastHeaderText | safe }}</header>
-    {% endif %}
-
     {# -------------- Forecast -------------- #}
     {% if config.display.HourlyForecast or config.display.DailyForecast %}
       <div class="forecast-container">
 
-        {% if config.display.ForecastTableColumnHeaderIcons and config.personalize.forecastLayout == "table" %}
+        {% if config.display.ForecastTableColumnHeaderIcons%}
           <div class="header-row">
             <span class="date-time-header">&nbsp;</span>
             <span class="weather-icon-header">&nbsp;</span>
@@ -139,10 +130,6 @@
 
               {% if config.display.Wind %}
                 <span class="wind-container">
-                  {% if (config.display.InlineIcons and config.personalize.forecastLayout == "tiled" ) %}
-                    <img class="inline-icon" src="{{ inlineIcons.wind }}" />
-                  {% endif %}
-
                   <span class="wind-speed">{{ h.wind.windSpeed }}</span>
                 </span>
                 <span class="forecast-icon-arrow-container">
@@ -172,10 +159,6 @@
 
               {% if config.display.Wind %}
                 <span class="wind-container">
-                  {% if (config.display.InlineIcons and config.personalize.forecastLayout == "tiled" ) %}
-                    <img class="inline-icon" src="{{ inlineIcons.wind }}" />
-                  {% endif %}
-
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
                 </span>
                 <span class="forecast-icon-arrow-container">
