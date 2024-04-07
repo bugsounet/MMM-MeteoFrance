@@ -58,6 +58,10 @@
   background-image: url(/modules/MMM-MeteoFrance/resources/background/pluie.png);
 }
 
+.MMM-MeteoFrance .background.unknow {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/splash.jpg);
+}
+
 .MMM-MeteoFrance .loadingDisplayerLogo {
   position: absolute;
 }

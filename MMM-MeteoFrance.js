@@ -31,8 +31,7 @@ Module.register("MMM-MeteoFrance", {
       Feels: true,
       SunCondition: true,
       Humidity: true,
-      UV: true,
-      Beaufort: true
+      UV: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -341,7 +340,6 @@ Module.register("MMM-MeteoFrance", {
   },
 
   kmh2Beaufort (speed) {
-    if (!this.config.display.Beaufort) return 0;
     var kmh = Math.round(speed);
     var speeds = [1, 5, 11, 19, 28, 38, 49, 61, 74, 88, 102, 117, 1000];
     for (var beaufort in speeds) {

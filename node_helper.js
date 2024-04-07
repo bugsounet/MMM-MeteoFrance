@@ -230,7 +230,7 @@ module.exports = NodeHelper.create({
       case "p31n":
       case "p31bisn":
         background = "soleil_nuage";
-        /* sable */
+        // sable
         break;
       case "p32j":
       case "p32bisj":
@@ -264,7 +264,7 @@ module.exports = NodeHelper.create({
 
       default:
         console.error(`[METEOFRANCE] Unkown icon: ${name}, Thanks to inform developer!`);
-        background = "soleil_nuage";
+        background = "unknow";
         break;
     }
     return background;
