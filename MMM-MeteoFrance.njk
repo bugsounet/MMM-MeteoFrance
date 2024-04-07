@@ -2,9 +2,9 @@
 
   {% if loading or error %}
       <div class="current-conditions-wrapper">
-        <span class="current-conditions-wrapper">
+        <span class="current-conditions">
           {% if error %}
-            <img class="current icon" src="modules/MMM-MeteoFrance/resources/p33j.svg" />
+            <img class="icon" src="modules/MMM-MeteoFrance/resources/p33j.svg" />
             <div class="dimmed light small" style="margin-right: 20px">{{ phrases.error | safe }}</div>
           {% else %}
             <div class="loadingDisplayer">
@@ -23,16 +23,16 @@
     {# -------------- Current Conditions -------------- #}
     {% if config.display.CurrentConditions %}
         <div class="background {{ forecast.currently.background }}"></div>
-        <span class="current-conditions-wrapper">
-          <img class="current icon" src="{{ forecast.currently.iconPath }}" />
-          <span class="current temperature bright large light">{{ forecast.currently.temperature }}</span>
+        <span class="current-conditions">
+          <img class="icon" src="{{ forecast.currently.iconPath }}" />
+          <span class="temperature bright large light">{{ forecast.currently.temperature }}</span>
         </span>
 
     {% endif %}
 
     {# -------------- Extra Current Conditions -------------- #}
     {% if config.display.ExtraCurrentConditions %}
-      <div class="extra-current-conditions-wrapper small bright">
+      <div class="extra-current-conditions small bright">
         <div class="feels-sun-container">
         {% if config.display.Feels %}
           <span class="feels-temperature">{{ forecast.currently.feels }}</span>
@@ -60,7 +60,7 @@
           </span>
           {% endif %}
         </span>
-        <div class="Precip-wind-contener">
+        <div class="Precip-wind-container">
             {% if config.display.Precipitation %}
               <span class="precipitation-container">
                   <span class="wi wi-raindrop"></span>
@@ -75,7 +75,7 @@
                 <span class="wi wi-strong-wind"></span>
                 <span class="wind-speed">{{ forecast.currently.wind.windSpeed }}</span>
                 {% if forecast.currently.wind.windIcon %}
-                  <img class="inline-icon {{ forecast.currently.wind.Beaufort }}" src="{{ forecast.currently.wind.windIcon }}" />
+                  <img class="feels-sun-container inline-icon {{ forecast.currently.wind.Beaufort }}" src="{{ forecast.currently.wind.windIcon }}" />
                 {% endif %}
               </span>
             {% endif %}
@@ -89,10 +89,10 @@
       </div>
     {% endif %}
 
-    {# -------------- Summary -------------- #}
+    {# -------------- description -------------- #}
     {% if config.display.Summary %}
       <div class="summary-wrapper small">
-        <div class="summary">{{ forecast.summary }}</div>
+        <div class="description">{{ forecast.summary }}</div>
       </div>
     {% endif %}
 
@@ -100,27 +100,11 @@
     {% if config.display.HourlyForecast or config.display.DailyForecast %}
       <div class="forecast-container">
 
-        {% if config.display.ForecastTableColumnHeaderIcons%}
-          <div class="header-row">
-            <span class="date-time-header">&nbsp;</span>
-            <span class="weather-icon-header">&nbsp;</span>
-            <span class="temperature-header"><span class="wi wi-thermometer"></span></span>
-
-            {% if config.display.Wind %}
-              <span class="wind-header">
-                <span class="wi wi-strong-wind"></span>
-              </span>
-              <span class="wind-arrow-header">&nbsp;</span>
-            {% endif %}
-          </div>
-
-        {% endif %}
-
         {# Hourly #}
         {% if config.display.HourlyForecast %}
 
           {% for h in forecast.hourly %}
-            <div class="forecast-item hourly">
+            <div class="forecast-item daily">
               <span class="time">{{ h.time }}</span>
               <span class="forecast-icon-container">
                 <img class="forecast-icon" src="{{ h.iconPath }}" />
@@ -146,7 +130,7 @@
         {% if config.display.DailyForecast %}
 
           {% for d in forecast.daily %}
-            <div class="forecast-item hourly">
+            <div class="forecast-item daily">
               <span class="day-name">{{ d.day }}</span>
               <span class="forecast-icon-container">
                 <img class="forecast-icon" src="{{ d.iconPath }}" />
@@ -175,7 +159,7 @@
       </div>
     {% endif %}
 
-    <div class="attribution small dimmed">Mise à jour depuis Météo France, le {{ update }}</div>
+    <div class="last_update small dimmed">Mise à jour depuis Météo France, le {{ update }}</div>
   {% endif %}
 
 </div>

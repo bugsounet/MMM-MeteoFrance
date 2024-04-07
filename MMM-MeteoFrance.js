@@ -23,7 +23,6 @@ Module.register("MMM-MeteoFrance", {
       Background: true,
       ExtraCurrentConditions: true,
       Summary: true,
-      ForecastTableColumnHeaderIcons: true,
       HourlyForecast: true,
       DailyForecast: true,
       Precipitation: true,
