@@ -141,70 +141,9 @@
   position: relative;
 }
 
-/* Beaufort color */
-.MMM-MeteoFrance .Beaufort0 {
+.MMM-MeteoFrance .arrowIcon {
   /*color: #FFFFFF;*/
   filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(105deg) brightness(107%) contrast(100%);
-}
-
-.MMM-MeteoFrance .Beaufort1 {
-  /*color: #AEF1F9;*/
-  filter: invert(90%) sepia(25%) saturate(597%) hue-rotate(93deg) brightness(103%) contrast(94%);
-}
-
-.MMM-MeteoFrance .Beaufort2 {
-  /*color: #96F7DC;*/
-  filter: invert(90%) sepia(51%) saturate(345%) hue-rotate(82deg) brightness(99%) contrast(95%);
-}
-
-.MMM-MeteoFrance .Beaufort3 {
-  /*color: #96F7B4;*/
-  filter: invert(88%) sepia(11%) saturate(1334%) hue-rotate(76deg) brightness(104%) contrast(94%);
-}
-
-.MMM-MeteoFrance .Beaufort4 {
-  /*color: #6FF46F;*/
-  filter: invert(97%) sepia(48%) saturate(1304%) hue-rotate(49deg) brightness(100%) contrast(92%);
-}
-
-.MMM-MeteoFrance .Beaufort5 {
-  /*color: #73ED12;*/
-  filter: invert(72%) sepia(63%) saturate(651%) hue-rotate(41deg) brightness(102%) contrast(93%);
-}
-
-.MMM-MeteoFrance .Beaufort6 {
-  /*color: #A4ED12;*/
-  filter: invert(96%) sepia(94%) saturate(7280%) hue-rotate(20deg) brightness(97%) contrast(91%);
-}
-
-.MMM-MeteoFrance .Beaufort7 {
-  /*color: #DAED12;*/
-  filter: invert(84%) sepia(70%) saturate(644%) hue-rotate(7deg) brightness(102%) contrast(86%);
-}
-
-.MMM-MeteoFrance .Beaufort8 {
-  /*color: #EDC212;*/
-  filter: invert(77%) sepia(67%) saturate(2500%) hue-rotate(3deg) brightness(109%) contrast(86%);
-}
-
-.MMM-MeteoFrance .Beaufort9 {
-  /*color: #ED8F12;*/
-  filter: invert(70%) sepia(76%) saturate(3280%) hue-rotate(356deg) brightness(97%) contrast(91%);
-}
-
-.MMM-MeteoFrance .Beaufort10 {
-  /*color: #ED6312;*/
-  filter: invert(57%) sepia(59%) saturate(7177%) hue-rotate(2deg) brightness(105%) contrast(86%);
-}
-
-.MMM-MeteoFrance .Beaufort11 {
-  /*color: #ED2912;*/
-  filter: invert(30%) sepia(84%) saturate(6374%) hue-rotate(356deg) brightness(96%) contrast(94%);
-}
-
-.MMM-MeteoFrance .Beaufort12 {
-  /*color: #D5102D;*/
-  filter: invert(20%) sepia(77%) saturate(3496%) hue-rotate(339deg) brightness(81%) contrast(109%);
 }
 
 /* UV */
@@ -288,6 +227,58 @@
   vertical-align: middle;
 }
 
+/* Beaufort */
+.MMM-MeteoFrance .wi-wind-beaufort-0 {
+  color: #FFFFFF;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-1 {
+color: #AEF1F9;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-2 {
+color: #96F7DC;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-3 {
+color: #96F7B4;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-4 {
+color: #6FF46F;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-5 {
+color: #73ED12;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-6 {
+color: #A4ED12;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-7 {
+color: #DAED12;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-8 {
+color: #EDC212
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-9 {
+color: #ED8F12;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-10 {
+color: #ED6312;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-11 {
+color: #ED2912;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-12 {
+color: #D5102D;
+}
 
 /* Gust Alert */
 .MMM-MeteoFrance .wind-speed-gust {

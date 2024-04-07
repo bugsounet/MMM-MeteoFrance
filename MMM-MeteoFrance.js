@@ -328,19 +328,25 @@ Module.register("MMM-MeteoFrance", {
       windSpeed: `${Math.round(speed)} km/h`,
       windSpeedGust: gust ? `${Math.round(speed+gust)} km/h` : 0,
       windIcon: icon,
-      Beaufort: `Beaufort${Beaufort}`
+      Beaufort: Beaufort
     };
   },
 
   kmh2Beaufort (speed) {
     var kmh = Math.round(speed);
-    var speeds = [1, 5, 11, 19, 28, 38, 49, 61, 74, 88, 102, 117, 1000];
-    for (var beaufort in speeds) {
-      var speed = speeds[beaufort];
-      if (speed > kmh) {
-        return beaufort;
-      }
-    }
-    return 12;
+    var beaufort = 0;
+    if (kmh >= 1 && kmh <= 5) beaufort = 1;
+    else if (kmh >= 6 && kmh <= 11) beaufort = 2;
+    else if (kmh >= 12 && kmh <= 19) beaufort = 3;
+    else if (kmh >= 20 && kmh <= 28) beaufort = 4;
+    else if (kmh >= 29 && kmh <= 38) beaufort = 5;
+    else if (kmh >= 39 && kmh <= 49) beaufort = 6;
+    else if (kmh >= 50 && kmh <= 61) beaufort = 7;
+    else if (kmh >= 62 && kmh <= 74) beaufort = 8;
+    else if (kmh >= 75 && kmh <= 88) beaufort = 9;
+    else if (kmh >= 89 && kmh <= 102) beaufort = 10;
+    else if (kmh >= 103 && kmh <= 117) beaufort = 11;
+    else if (kmh >= 118) beaufort = 12;
+    return beaufort;
   }
 });
