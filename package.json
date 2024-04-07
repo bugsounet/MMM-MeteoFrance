@@ -1,6 +1,7 @@
 {
   "name": "MMM-MeteoFrance",
   "version": "1.0.0",
+  "rev": "240407",
   "description": "MagicMirror² module that gets weather forecast data from Meteo France",
   "main": "MMM-MeteoFrance.js",
   "scripts": {
