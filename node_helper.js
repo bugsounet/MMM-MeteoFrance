@@ -30,7 +30,7 @@ module.exports = NodeHelper.create({
   },
 
   initialize (config) {
-    console.log("[METEOFRANCE] EXT-Alert Version:", require("./package.json").version, "rev:", require("./package.json").rev);
+    console.log("[METEOFRANCE] MMM-MeteoFrance Version:", require("./package.json").version, "rev:", require("./package.json").rev);
     this.config = config;
     if (this.config.debug) log = (...args) => { console.log("[METEOFRANCE]", ...args); };
     if (typeof this.config.place === "object" && this.config.place.length) {
