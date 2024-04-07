@@ -22,6 +22,7 @@
   configDeepMerge: true,
   config: {
     place: "Paris"
+    // place: [ "Paris", "Marseille", "Lille" ]
   }
 },
 ```
@@ -52,19 +53,15 @@
       DailyForecast: true,
       Precipitation: true,
       Wind: true,
-      InlineIcons: true,
       Feels: true,
       SunCondition: true,
       Humidity: true,
-      UV: true,
-      Beaufort: true
+      UV: true
     },
     personalize: {
       hourlyForecastInterval: 3,
       maxHourliesToShow: 3,
-      maxDailiesToShow: 3,
-      forecastLayout: "table",
-      forecastHeaderText: ""
+      maxDailiesToShow: 3
     }
   }
 },
