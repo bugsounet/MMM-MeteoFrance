@@ -58,8 +58,7 @@ Module.register("MMM-MeteoFrance", {
   getStyles () {
     return [
       "MMM-MeteoFrance.css",
-      this.file("node_modules/weathericons/css/weather-icons.min.css"),
-      "font-awesome.css"
+      this.file("node_modules/weathericons/css/weather-icons.min.css")
     ];
   },
 
