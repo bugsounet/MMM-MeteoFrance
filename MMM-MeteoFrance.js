@@ -49,6 +49,15 @@ Module.register("MMM-MeteoFrance", {
     this.weathers = [];
     this.first = true;
     this.place = 0;
+    /* define rotateInterval limit */
+    if (this.config.rotateInterval < 15000) {
+      console.warn("[MeteoFrance] rotateInterval to low... correct to 15000 (15 secs)")
+      this.config.updateInterval = 15000
+    }
+    if (this.config.updateInterval > 900000) {
+      console.warn("[MeteoFrance] updateInterval to high... correct to 900000 (15 mins)")
+      this.config.updateInterval = 900000
+    }
   },
 
   getScripts () {

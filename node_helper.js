@@ -41,7 +41,17 @@ module.exports = NodeHelper.create({
     }
     else return this.sendError("'place:' nom de ville manquante!");
 
-    /** fetch loop **/
+    /* define updateInterval limit */
+    if (this.config.updateInterval < 300000) {
+      console.warn("[MeteoFrance] updateInterval to low... correct to 300000 (5 mins)")
+      this.config.updateInterval = 300000
+    }
+    if (this.config.updateInterval > 3600000) {
+      console.warn("[MeteoFrance] updateInterval to high... correct to 3600000 (1 hour)")
+      this.config.updateInterval = 3600000
+    }
+
+    /* fetch loop */
     this.fetchData();
     this.scheduleUpdate(this.config.updateInterval);
   },
