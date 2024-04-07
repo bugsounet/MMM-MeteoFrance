@@ -9,6 +9,22 @@
     color: white;
 }
 
+/* Loading */
+.MMM-MeteoFrance .loadingLogo {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.MMM-MeteoFrance .loadingVideo {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/*Background */
 .MMM-MeteoFrance .background {
     border-radius: 10px;
     width: -webkit-fill-available;
@@ -64,20 +80,6 @@
 
 .MMM-MeteoFrance .loadingDisplayerLogo {
   position: absolute;
-}
-
-.MMM-MeteoFrance .loadingLogo {
-  width: 150px;
-  height: 150px;
-  margin: 0;
-  border-radius: 20px;
-  padding: 10px;
-}
-
-.MMM-MeteoFrance .loadingVideo {
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
 }
 
 .MMM-MeteoFrance .current-conditions-wrapper {
@@ -147,6 +149,7 @@
     position: relative;
 }
 
+/* UV */
 .MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container {
   margin-left: 5px;
 }
@@ -189,6 +192,7 @@
 .MMM-MeteoFrance .extra-current-conditions-wrapper .uv-container .uv12 {
   color: mediumpurple;
 }
+
 
 .MMM-MeteoFrance .extra-current-conditions-wrapper .wind-alert-container .wind-speed-gust {
     color: white;
@@ -337,16 +341,14 @@
 }
 
 /* Summary */
-
 .MMM-MeteoFrance .summary {
   position: relative;
   padding: 10px;
 }
 
-
 /* ------------ Forecast ------------ */
 
-.MMM-MeteoFrance .wrapper.table .forecast-container {
+.MMM-MeteoFrance .wrapper .forecast-container {
   display: table;
   border-collapse: collapse;
   width: 100%;
@@ -356,23 +358,23 @@
   position: relative;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item,
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item,
+.MMM-MeteoFrance .wrapper .forecast-container .header-row {
   display: table-row;
   border-top: solid 1px #222;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row {
   border-top: none;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .date-time-header {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row .date-time-header {
   text-align: left;
   overflow: visible;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item > span,
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row > span {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item > span,
+.MMM-MeteoFrance .wrapper .forecast-container .header-row > span {
   display: table-cell;
   font-size: 17px;
   text-align: center;
@@ -381,41 +383,41 @@
   white-space: nowrap;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row > span {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row > span {
   height: 32px;
   font-size: 14px;
 }
 
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item > span:first-child {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item > span:first-child {
   text-align: center;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .forecast-icon {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item .forecast-icon {
   width: 40px;
   height: 40px;
   vertical-align: middle;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .time,
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .high-temperature,
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .low-temperature {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item .time,
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item .high-temperature,
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item .low-temperature {
   white-space: nowrap;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .forecast-item .accumulation {
+.MMM-MeteoFrance .wrapper .forecast-container .forecast-item .accumulation {
   display: block;
   white-space: nowrap;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .temperature-header {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row .temperature-header {
   font-size: 17px;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .wind-header {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row .wind-header {
   font-size: 17px;
 }
 
-.MMM-MeteoFrance .wrapper.table .forecast-container .header-row .wind-arrow-header {
+.MMM-MeteoFrance .wrapper .forecast-container .header-row .wind-arrow-header {
   font-size: 24px;
 }

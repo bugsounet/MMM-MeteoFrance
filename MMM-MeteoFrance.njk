@@ -1,10 +1,10 @@
-<div class="wrapper table">
+<div class="wrapper">
 
   {% if loading or error %}
       <div class="current-conditions-wrapper">
         <span class="current-conditions-wrapper">
           {% if error %}
-            <img class="current icon current" src="modules/MMM-MeteoFrance/resources/p33j.svg" />
+            <img class="current icon" src="modules/MMM-MeteoFrance/resources/p33j.svg" />
             <div class="dimmed light small" style="margin-right: 20px">{{ phrases.error | safe }}</div>
           {% else %}
             <div class="loadingDisplayer">
@@ -24,7 +24,7 @@
     {% if config.display.CurrentConditions %}
         <div class="background {{ forecast.currently.background }}"></div>
         <span class="current-conditions-wrapper">
-          <img class="current icon current" src="{{ forecast.currently.iconPath }}" />
+          <img class="current icon" src="{{ forecast.currently.iconPath }}" />
           <span class="current temperature bright large light">{{ forecast.currently.temperature }}</span>
         </span>
 
