@@ -108,7 +108,8 @@
 
           {% for h in forecast.hourly %}
             <div class="forecast-item daily">
-              <span class="time">{{ h.time }}</span>
+              {#<span class="time">{{ h.time }}</span>#}
+              <span class="time wi wi-time-{{ h.time }}"></span>
               <span class="forecast-icon-container">
                 <img class="forecast-icon" src="{{ h.iconPath }}" />
               </span>

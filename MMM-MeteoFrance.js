@@ -255,11 +255,13 @@ Module.register("MMM-MeteoFrance", {
 
     // --------- Date / Time Display ---------
     if (type === "daily") {
-      //day name (e.g.: "MON")
+      //day name (e.g.: "lun.")
       fItem.day = moment(fData.time).format("ddd");
     } else { //hourly
-      //time (e.g.: "5 PM")
-      fItem.time = moment(fData.time).format("kk[h]");
+      //time (e.g.: "12h")
+      //fItem.time = moment(fData.time).format("k[h]");
+      //time (e.g: "2")
+      fItem.time = moment(fData.time).format("h");
     }
 
     // --------- Icon ---------

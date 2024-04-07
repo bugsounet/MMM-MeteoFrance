@@ -222,6 +222,9 @@
   vertical-align: middle;
 }
 
+.MMM-MeteoFrance .time {
+  font-size: 30px !important;
+}
 /* Beaufort */
 
 .MMM-MeteoFrance .beaufort {
