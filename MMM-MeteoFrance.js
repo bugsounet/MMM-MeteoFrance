@@ -14,7 +14,6 @@ Module.register("MMM-MeteoFrance", {
   defaults: {
     debug: false,
     updateInterval: 10 * 60 * 1000,
-    updateFadeSpeed: 1000,
     rotateInterval: 30 * 1000,
     place: "Paris",
     display: {
@@ -108,7 +107,7 @@ Module.register("MMM-MeteoFrance", {
         }
         else this.error = payload;
         console.error("[MeteoFrance] **ERROR**", this.error);
-        this.updateDom(this.config.updateFadeSpeed);
+        this.updateDom(1000);
         break;
     }
   },
@@ -122,7 +121,7 @@ Module.register("MMM-MeteoFrance", {
     this.log("data:", this.weatherData);
 
     this.formattedWeatherData = this.processWeatherData();
-    this.updateDom(this.config.updateFadeSpeed);
+    this.updateDom(1000);
   },
 
   displayWeatherRotate () {
