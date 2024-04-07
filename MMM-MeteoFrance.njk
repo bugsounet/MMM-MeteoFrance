@@ -23,7 +23,10 @@
     {# -------------- Current Conditions -------------- #}
     {% if config.display.CurrentConditions %}
         <div class="background {{ forecast.currently.background }}"></div>
-        <span class="current-conditions">
+        {% if forecast.place %}
+        <div class="place">{{ forecast.place }}</div>
+        {% endif %}
+        <span class="current-conditions {% if forecast.place %}withPlace{% endif %}">
           <img class="icon" src="{{ forecast.currently.iconPath }}" />
           <span class="temperature large light">{{ forecast.currently.temperature }}</span>
         </span>

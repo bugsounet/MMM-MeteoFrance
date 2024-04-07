@@ -118,7 +118,6 @@ Module.register("MMM-MeteoFrance", {
     this.place = place;
     this.last_update = this.weathers[place].last_update;
     this.weatherData = this.weathers[place];
-    if (this.config.display.HeaderPlaceName || this.weathers.length > 1) this.data.header = this.weatherData.properties.name;
     this.error = null;
     this.log("data:", this.weatherData);
 
@@ -140,10 +139,13 @@ Module.register("MMM-MeteoFrance", {
     the houly / daily forecast items.
   */
   processWeatherData () {
-
     var summary = `${this.weatherData.nowcast.weather_description}.`;
     var hourlies = [];
-    
+    var place = null;
+    if (this.config.display.HeaderPlaceName || this.weathers.length > 1) {
+      place = this.weatherData.properties.name;
+    }
+
     if (this.config.display.HourlyForecast) {
       var displayCounter = 0;
       var currentIndex = this.config.personalize.hourlyForecastInterval;
@@ -175,6 +177,7 @@ Module.register("MMM-MeteoFrance", {
     }
   
     return {
+      place: place,
       currently : {
         temperature: `${this.weatherData.nowcast.temperature}°`,
         iconPath: this.weatherData.nowcast.weather_icon,
