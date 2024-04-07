@@ -177,7 +177,7 @@
 
 .MMM-MeteoFrance .uv6,
 .MMM-MeteoFrance .uv7 {
-  color: orange;;
+  color: orange;
 }
 
 .MMM-MeteoFrance .uv8,
@@ -228,56 +228,61 @@
 }
 
 /* Beaufort */
+
+.MMM-MeteoFrance .beaufort {
+  font-size: 24px !important;
+}
+
 .MMM-MeteoFrance .wi-wind-beaufort-0 {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-1 {
-color: #AEF1F9;
+  color: #ccffff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-2 {
-color: #96F7DC;
+  color: #99ffff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-3 {
-color: #96F7B4;
+  color: #66ffff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-4 {
-color: #6FF46F;
+  color: #00ffff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-5 {
-color: #73ED12;
+  color: #00ccff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-6 {
-color: #A4ED12;
+  color: #0099ff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-7 {
-color: #DAED12;
+  color: #0066ff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-8 {
-color: #EDC212
+  color: #0000ff;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-9 {
-color: #ED8F12;
+  color: #0000cc;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-10 {
-color: #ED6312;
+  color: #000099;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-11 {
-color: #ED2912;
+  color: #000066;
 }
 
 .MMM-MeteoFrance .wi-wind-beaufort-12 {
-color: #D5102D;
+  color: #000000;
 }
 
 /* Gust Alert */

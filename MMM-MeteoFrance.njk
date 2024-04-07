@@ -116,7 +116,9 @@
 
 
               {% if config.display.Wind %}
-                <span class="wi wi-wind-beaufort-{{ h.wind.Beaufort }}"></span>
+                <span class="beaufort">
+                  <span class="wi wi-wind-beaufort-{{ h.wind.Beaufort }}"></span>
+                </span>
                 <span class="wind-container">
                   <span class="wind-speed">{{ h.wind.windSpeed }}</span>
                 </span>
@@ -146,7 +148,9 @@
               </span>
 
               {% if config.display.Wind %}
-                <span class="wi wi-wind-beaufort-{{ d.wind.Beaufort }}"></span>
+                <span class="beaufort">
+                  <span class="wi wi-wind-beaufort-{{ d.wind.Beaufort }}"></span>
+                </span>
                 <span class="wind-container">
                   <span class="wind-speed">{{ d.wind.windSpeed }}</span>
                 </span>
