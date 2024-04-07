@@ -117,7 +117,7 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
 
 ### Mise à jour manuelle
 
-Utilisez cette commande::
+Utilisez cette commande:
 ```sh
 cd ~/MagicMirror/modules/MMM-MeteoFrance
 npm run update
