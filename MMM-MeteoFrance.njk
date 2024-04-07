@@ -25,14 +25,14 @@
         <div class="background {{ forecast.currently.background }}"></div>
         <span class="current-conditions">
           <img class="icon" src="{{ forecast.currently.iconPath }}" />
-          <span class="temperature bright large light">{{ forecast.currently.temperature }}</span>
+          <span class="temperature large light">{{ forecast.currently.temperature }}</span>
         </span>
 
     {% endif %}
 
     {# -------------- Extra Current Conditions -------------- #}
     {% if config.display.ExtraCurrentConditions %}
-      <div class="extra-current-conditions small bright">
+      <div class="extra-current-conditions small">
         <div class="feels-sun-container">
         {% if config.display.Feels %}
           <span class="feels-temperature">{{ forecast.currently.feels }}</span>
