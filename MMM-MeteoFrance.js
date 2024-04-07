@@ -40,8 +40,8 @@ Module.register("MMM-MeteoFrance", {
   },
 
   start () {
-    console.log("[METEOFRANCE] Starting...");
-    if (this.config.debug) this.log = (...args) => { console.log("[METEOFRANCE]", ...args); };
+    console.log("[MeteoFrance] Starting...");
+    if (this.config.debug) this.log = (...args) => { console.log("[MeteoFrance]", ...args); };
     else this.log = (...args) => { /* do nothing */ };
     this.error = null;
     this.weatherData = null;
@@ -59,7 +59,8 @@ Module.register("MMM-MeteoFrance", {
   getStyles () {
     return [
       "MMM-MeteoFrance.css",
-      this.file("node_modules/weathericons/css/weather-icons.min.css")
+      this.file("node_modules/weathericons/css/weather-icons.min.css"),
+      "font-awesome.css"
     ];
   },
 
@@ -106,7 +107,7 @@ Module.register("MMM-MeteoFrance", {
           else this.error= payload.code;
         }
         else this.error = payload;
-        console.error("[WEATHER] **ERROR**", this.error);
+        console.error("[MeteoFrance] **ERROR**", this.error);
         this.updateDom(this.config.updateFadeSpeed);
         break;
     }
@@ -121,7 +122,6 @@ Module.register("MMM-MeteoFrance", {
     this.error = null;
     this.log("data:", this.weatherData);
 
-    //process weather data
     this.formattedWeatherData = this.processWeatherData();
     this.updateDom(this.config.updateFadeSpeed);
   },
@@ -142,7 +142,6 @@ Module.register("MMM-MeteoFrance", {
   processWeatherData () {
 
     var summary = `${this.weatherData.nowcast.weather_description}.`;
-
     var hourlies = [];
     
     if (this.config.display.HourlyForecast) {
@@ -166,14 +165,10 @@ Module.register("MMM-MeteoFrance", {
           break;
         }
         const date = this.searchDate(i);
-        //console.log("-->", date, this.weatherData.forecast[i].time)
         const dayForecast = this.weatherData.forecast.find((forecast) => forecast.time === date);
-        //console.log(dayForecast)
         const dayHours = this.searchDate(i, true);
-        //console.log("dayHours ----->", dayHours)
         const tempRange = this.getTempMinMax(dayHours);
         dayForecast.temp = tempRange;
-        //console.log("dayForecast", dayForecast)
         dailies.push(this.forecastItemFactory(dayForecast, "daily"));
       }
 
@@ -208,7 +203,6 @@ Module.register("MMM-MeteoFrance", {
 
     tempRange.min = Math.min(...ArrayOfTemp);
     tempRange.max = Math.max(...ArrayOfTemp);
-    //console.log("tempRange", tempRange)
     return tempRange;
   },
 
@@ -257,8 +251,6 @@ Module.register("MMM-MeteoFrance", {
    */
   forecastItemFactory (fData, type) {
     var fItem = new Object();
-
-    //console.log("--->fData", fData)
 
     // --------- Date / Time Display ---------
     if (type === "daily") {

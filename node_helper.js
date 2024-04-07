@@ -30,9 +30,9 @@ module.exports = NodeHelper.create({
   },
 
   initialize (config) {
-    console.log("[METEOFRANCE] MMM-MeteoFrance Version:", require("./package.json").version, "rev:", require("./package.json").rev);
+    console.log("[MeteoFrance] MMM-MeteoFrance Version:", require("./package.json").version, "rev:", require("./package.json").rev);
     this.config = config;
-    if (this.config.debug) log = (...args) => { console.log("[METEOFRANCE]", ...args); };
+    if (this.config.debug) log = (...args) => { console.log("[MeteoFrance]", ...args); };
     if (typeof this.config.place === "object" && this.config.place.length) {
       this.weathers = this.config.place;
     }
@@ -59,7 +59,7 @@ module.exports = NodeHelper.create({
         }
         else log("No Data:", place);
       }
-    )).catch(() => console.error("[METEOFRANCE] **ERROR No Data**"));
+    )).catch(() => console.error("[MeteoFrance] **ERROR No Data**"));
     this.sendSocketNotification("DATA_UPDATE", this.weathersResult);
   },
 
@@ -68,7 +68,7 @@ module.exports = NodeHelper.create({
       getWeather(place)
         .then((weather) => {
           if (!weather) {
-            console.error("[METEOFRANCE] **ERROR No Data**");
+            console.error("[MeteoFrance] **ERROR No Data**");
             resolv(null);
             return;
           }
@@ -263,7 +263,7 @@ module.exports = NodeHelper.create({
         break;
 
       default:
-        console.error(`[METEOFRANCE] Unkown icon: ${name}, Thanks to inform developer!`);
+        console.error(`[MeteoFrance] Unkown icon: ${name}, Thanks to inform developer!`);
         background = "unknow";
         break;
     }
@@ -279,7 +279,7 @@ module.exports = NodeHelper.create({
   },
 
   sendError (error, message) {
-    console.error(`[METEOFRANCE] **ERREUR** ${error}`, message ? message: "");
+    console.error(`[MeteoFrance] **ERREUR** ${error}`, message ? message: "");
     this.sendSocketNotification("ERROR", error.message || error);
   }
 });
