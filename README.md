@@ -46,7 +46,6 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
   position: "top_right",
   animateIn: "fadeInRight",
   animateOut: "fadeOutRight",
-  configDeepMerge: true,
   config: {
     debug: false,
     updateInterval: 10 * 60 * 1000,
