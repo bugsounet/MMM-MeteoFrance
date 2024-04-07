@@ -48,7 +48,6 @@
       Backgound: true,
       ExtraCurrentConditions: true,
       Summary: true,
-      ForecastTableColumnHeaderIcons: true,
       HourlyForecast: true,
       DailyForecast: true,
       Precipitation: true,
