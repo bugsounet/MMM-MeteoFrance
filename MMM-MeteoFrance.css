@@ -1,0 +1,351 @@
+.MMM-MeteoFrance * {
+  box-sizing: content-box;
+}
+
+.MMM-MeteoFrance .wrapper {
+  width: 330px;
+  position: relative;
+  text-align: right;
+  color: white;
+}
+
+/* Loading */
+.MMM-MeteoFrance .loadingLogo {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.MMM-MeteoFrance .loadingVideo {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Background */
+.MMM-MeteoFrance .background {
+  border-radius: 10px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: absolute;
+  opacity: 0.7;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  animation: BackgroundFadeIn 3s;
+}
+
+@keyframes BackgroundFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.7; }
+}
+
+.MMM-MeteoFrance .soleil {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/soleil.png);
+}
+
+.MMM-MeteoFrance .soleil_nuage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/soleil_nuage.png);
+}
+
+.MMM-MeteoFrance .brouilard {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/sbrouilard.png);
+}
+
+.MMM-MeteoFrance .lune_nuage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/lune_nuage.png);
+}
+
+.MMM-MeteoFrance .lune {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/lune.png);
+}
+
+.MMM-MeteoFrance .neige {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/neige.png);
+}
+
+.MMM-MeteoFrance .orage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/orage.png);
+}
+
+.MMM-MeteoFrance .pluie {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/pluie.png);
+}
+
+.MMM-MeteoFrance .unknow {
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/splash.jpg);
+}
+
+.MMM-MeteoFrance .loadingDisplayerLogo {
+  position: absolute;
+}
+
+.MMM-MeteoFrance .place {
+  position: absolute;
+  margin-left: auto;
+  text-align: center;
+  width: -webkit-fill-available;
+  padding: 5px;
+  font-size: 16px;
+}
+
+/* Current Conditions */
+.MMM-MeteoFrance .current-conditions {
+  display: block;
+  text-align: center;
+  position: relative;
+  padding: 0 10px 0 10px;
+}
+
+.MMM-MeteoFrance .current-conditions.withPlace {
+  padding: 5px 10px 0 10px;
+}
+
+.MMM-MeteoFrance .current-conditions .temperature {
+  vertical-align: middle;
+}
+
+.MMM-MeteoFrance .current-conditions .icon {
+  vertical-align: middle;
+  margin-right: 40px;
+  width: 120px;
+  height: 120px;
+}
+
+/* Temperature low/high/normal */
+.MMM-MeteoFrance .high-temperature {
+  color: #F8DD70;
+}
+
+.MMM-MeteoFrance .low-temperature {
+  color: #6FC4F5;
+}
+
+/* last update */
+.MMM-MeteoFrance .last_update {
+  font-size: 12px;
+  text-align: right;
+  padding: 10px;
+  position: relative;
+}
+
+/* Inline icons */
+.MMM-MeteoFrance .inline-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 0px;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.MMM-MeteoFrance .arrowIcon {
+  /*color: #FFFFFF;*/
+  filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(105deg) brightness(107%) contrast(100%);
+}
+
+/* UV */
+.MMM-MeteoFrance .uv-container {
+  margin-left: 5px;
+}
+
+.MMM-MeteoFrance .icon_uv {
+    background-image: url(data:image/png;base64,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);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: yellow;
+    border-radius: 8px;
+    width: 16px;
+    height: 16px;
+    transform: translate(0, -5px);
+}
+
+/* UV Color */
+.MMM-MeteoFrance .uv0,
+.MMM-MeteoFrance .uv1,
+.MMM-MeteoFrance .uv2 {
+  color: limegreen;
+}
+
+.MMM-MeteoFrance .uv3,
+.MMM-MeteoFrance .uv4,
+.MMM-MeteoFrance .uv5 {
+  color: yellow;
+}
+
+.MMM-MeteoFrance .uv6,
+.MMM-MeteoFrance .uv7 {
+  color: orange;
+}
+
+.MMM-MeteoFrance .uv8,
+.MMM-MeteoFrance .uv9,
+.MMM-MeteoFrance .uv10 {
+  color: red;
+}
+
+.MMM-MeteoFrance .uv11,
+.MMM-MeteoFrance .uv12 {
+  color: mediumpurple;
+}
+
+/* Icons */
+.MMM-MeteoFrance .wi-thermometer {
+  font-size: 80%;
+}
+
+.MMM-MeteoFrance .fa-long-arrow-down {
+  font-size: 90%;
+  display: inline-block;
+}
+
+.MMM-MeteoFrance .wi-sunset {
+  color: orange;
+  font-size: 80%;
+}
+
+.MMM-MeteoFrance .wi-sunrise {
+  color: yellow;
+  font-size: 80%;
+}
+
+.MMM-MeteoFrance .wi-humidity {
+  color: #0091ff;
+  font-size: 80%;
+  transform: translate(0, -1px);
+}
+
+.MMM-MeteoFrance .wi-raindrop {
+  color: #0091ff;
+  vertical-align: middle;
+}
+
+.MMM-MeteoFrance .time {
+  font-size: 30px !important;
+}
+/* Beaufort */
+
+.MMM-MeteoFrance .beaufort {
+  font-size: 24px !important;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-0 {
+  color: #ffffff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-1 {
+  color: #ccffff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-2 {
+  color: #99ffff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-3 {
+  color: #66ffff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-4 {
+  color: #00ffff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-5 {
+  color: #00ccff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-6 {
+  color: #0099ff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-7 {
+  color: #0066ff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-8 {
+  color: #0000ff;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-9 {
+  color: #0000cc;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-10 {
+  color: #000099;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-11 {
+  color: #000066;
+}
+
+.MMM-MeteoFrance .wi-wind-beaufort-12 {
+  color: #000000;
+}
+
+/* Gust Alert */
+.MMM-MeteoFrance .wind-speed-gust {
+    color: white;
+    background-color: #ed1c24;
+    border-radius: 5px;
+    line-height: 2.5;
+    padding: 5px;
+}
+
+/* Extra Current Conditions */
+.MMM-MeteoFrance .extra-current-conditions {
+    display: block;
+    word-wrap: normal;
+    padding: 0 10px 0 10px;
+    position: relative;
+}
+
+.MMM-MeteoFrance .extra-current-conditions .temperature-uv-container,
+.MMM-MeteoFrance .extra-current-conditions .precipitation-container,
+.MMM-MeteoFrance .extra-current-conditions .wind-container,
+.MMM-MeteoFrance .extra-current-conditions .wind-alert-container {
+  display: inline-block;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.MMM-MeteoFrance .extra-current-conditions .Precip-wind-container .wind-container {
+  margin-left: 5px;
+}
+
+/* Description */
+.MMM-MeteoFrance .description {
+  position: relative;
+  padding: 10px;
+}
+
+/* ------------ Forecast ------------ */
+.MMM-MeteoFrance .forecast-container {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 17px;
+  line-height: 1;
+  border-bottom: solid 1px #222;
+  position: relative;
+}
+
+.MMM-MeteoFrance .forecast-container .forecast-item {
+  display: table-row;
+  border-top: solid 1px #222;
+}
+
+.MMM-MeteoFrance .forecast-container .forecast-item > span {
+  display: table-cell;
+  font-size: 17px;
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  white-space: nowrap;
+}
+
+.MMM-MeteoFrance .forecast-container .forecast-item .forecast-icon {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
