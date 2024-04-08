@@ -53,7 +53,7 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
     place: "Paris",
     display: {
       HeaderPlaceName: false,
-      Backgound: true,
+      Background: true,
       CurrentConditions: true,
       ExtraCurrentConditions: true,
       Precipitation: true,
