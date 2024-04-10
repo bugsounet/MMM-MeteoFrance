@@ -301,7 +301,7 @@ Module.register("MMM-MeteoFrance", {
   },
 
   formatSun (Sunrise,Sunset) {
-    var now = new Date();
+    var now = new Date(Date.now());
     var sunrise = new Date(Sunrise);
     var sunset = new Date(Sunset);
 
