@@ -146,4 +146,7 @@ Voici la règle a ajouter pour `MMM-MeteoFrance`
     * @bugsounet
   * License: MIT
 
-## Ce module est en cours de developpement
+## Donation
+ Si vous aimez ce module, un petit café est bien sympatique :)
+ 
+ [Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TTHRH94Y4KL36&source=url)
