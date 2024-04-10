@@ -41,6 +41,7 @@ module.exports = NodeHelper.create({
     }
     else return this.sendError("'place:' nom de ville manquante!");
 
+    this.sendSocketNotification("WEATHER_PLACES", this.weathers);
     /* define updateInterval limit */
     if (this.config.updateInterval < 300000) {
       console.warn("[MeteoFrance] updateInterval to low... correct to 300000 (5 mins)");
@@ -69,8 +70,8 @@ module.exports = NodeHelper.create({
         }
         else log("No Data:", place);
       }
-    )).catch(() => console.error("[MeteoFrance] **ERROR No Data**"));
-    this.sendSocketNotification("DATA_UPDATE", this.weathersResult);
+    ));
+    if (this.weathersResult.length) this.sendSocketNotification("DATA_UPDATE", this.weathersResult);
   },
 
   async fetchWeather (place) {
@@ -83,7 +84,7 @@ module.exports = NodeHelper.create({
             return;
           }
           if (weather.properties.country !== "FR - France") {
-            this.sendError("Ce module est uniquement disponible pour les villes Française!");
+            this.sendError(`${place}: Ce module est uniquement disponible pour les villes Française!`);
             resolv(null);
             return;
           }

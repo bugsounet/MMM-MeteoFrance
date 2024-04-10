@@ -45,10 +45,11 @@ Module.register("MMM-MeteoFrance", {
     this.error = null;
     this.weatherData = null;
     this.formattedWeatherData = null;
-    this.last_update = null;
+    this.last_update = [];
     this.weathers = [];
     this.first = true;
     this.place = 0;
+    this.config = configMerge({}, this.defaults, this.config);
     /* define rotateInterval limit */
     if (this.config.rotateInterval < 15000) {
       console.warn("[MeteoFrance] rotateInterval to low... correct to 15000 (15 secs)");
@@ -58,6 +59,7 @@ Module.register("MMM-MeteoFrance", {
       console.warn("[MeteoFrance] updateInterval to high... correct to 900000 (15 mins)");
       this.config.updateInterval = 900000;
     }
+    this.weathersPlaces = [];
   },
 
   getScripts () {
@@ -100,7 +102,10 @@ Module.register("MMM-MeteoFrance", {
   socketNotificationReceived (notification, payload) {
     switch (notification) {
       case "DATA_UPDATE":
+        if (this.error && payload.length !== this.weathersPlaces.length) return;
+        this.error = null;
         this.weathers = payload;
+        this.log("Reveiced data:", this.weathers);
         if (this.first) {
           this.displayWeather(0);
           this.first = false;
@@ -117,26 +122,29 @@ Module.register("MMM-MeteoFrance", {
         console.error("[MeteoFrance] **ERROR**", this.error);
         this.updateDom(1000);
         break;
+      case "WEATHER_PLACES":
+        this.weathersPlaces = payload;
+        break;
     }
   },
 
   displayWeather (place, force) {
-    if (this.last_update === this.weathers[place].last_update && !force) return;
+    if (this.last_update[place] === this.weathers[place].last_update && !force) return;
     this.place = place;
-    this.last_update = this.weathers[place].last_update;
+    this.last_update[place] = this.weathers[place].last_update;
     this.weatherData = this.weathers[place];
     this.error = null;
-    this.log("data:", this.weatherData);
-
+    this.log("Used data:", this.weatherData);
+    this.log("last_update data:", this.last_update[place]);
     this.formattedWeatherData = this.processWeatherData();
     this.updateDom(1000);
   },
 
   displayWeatherRotate () {
     this.rotote = setInterval(() => {
-      this.displayWeather(this.place,true);
       this.place++;
       if (this.place > this.weathers.length-1) this.place = 0;
+      this.displayWeather(this.place,true);
     }, this.config.rotateInterval);
   },
 
@@ -180,10 +188,9 @@ Module.register("MMM-MeteoFrance", {
         dayForecast.temp = tempRange;
         dailies.push(this.forecastItemFactory(dayForecast, "daily"));
       }
-
     }
-  
-    return {
+
+    const result = {
       place: place,
       currently : {
         temperature: `${this.weatherData.nowcast.temperature}°`,
@@ -192,7 +199,7 @@ Module.register("MMM-MeteoFrance", {
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
         wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
-        feels: this.formatFeels(this.weatherData.nowcast.felt_temperature),
+        feels: `Ressenti ${Math.round(this.weatherData.nowcast.felt_temperature)}°`,
         sun: this.formatSun(this.weatherData.daily_forecast.sunrise_time, this.weatherData.daily_forecast.sunset_time),
         humidity: `${this.weatherData.nowcast.relative_humidity}%`,
         uv: Math.round(this.weatherData.daily_forecast.uv_index)
@@ -201,6 +208,9 @@ Module.register("MMM-MeteoFrance", {
       hourly : hourlies,
       daily : dailies
     };
+
+    this.log("processWeatherData data:", result);
+    return result;
   },
 
   getTempMinMax (hours) {
@@ -288,10 +298,6 @@ Module.register("MMM-MeteoFrance", {
     fItem.wind = this.formatWind(fData.wind_speed, 0, fData.wind_icon);
 
     return fItem;
-  },
-
-  formatFeels (feels) {
-    return this.translate("FEELS", { DEGREE: `${Math.round(feels)}°` });
   },
 
   formatSun (Sunrise,Sunset) {

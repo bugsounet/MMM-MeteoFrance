@@ -30,7 +30,6 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
   position: "top_right",
   animateIn: "fadeInRight",
   animateOut: "fadeOutRight",
-  configDeepMerge: true,
   config: {
     place: "Paris"
     // place: [ "Paris", "Marseille", "Lille" ]
