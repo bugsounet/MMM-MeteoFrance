@@ -265,12 +265,12 @@ Module.register("MMM-MeteoFrance", {
     // --------- Date / Time Display ---------
     if (type === "daily") {
       //day name (e.g.: "lun.")
-      fItem.day = moment(fData.time).format("ddd");
+      fItem.day = moment(fData.time).locale("fr").format("ddd");
     } else { //hourly
       //time (e.g.: "12h")
       //fItem.time = moment(fData.time).format("k[h]");
       //time (e.g: "2")
-      fItem.time = moment(fData.time).format("h");
+      fItem.time = moment(fData.time).locale("fr").format("h");
     }
 
     // --------- Icon ---------
@@ -300,7 +300,7 @@ Module.register("MMM-MeteoFrance", {
     var sunset = new Date(Sunset);
 
     var sunDate = sunrise < now && sunset > now ? sunset : sunrise;
-    var timeString = config.timeFormat === 24 ? moment(sunDate).format("HH:mm") : moment(sunDate).format("h:mm A");
+    var timeString = config.timeFormat === 24 ? moment(sunDate).locale("fr").format("HH:mm") : moment(sunDate).locale("fr").format("h:mm A");
 
     return {
       time: timeString,
