@@ -200,7 +200,8 @@ Module.register("MMM-MeteoFrance", {
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
         wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
         feels: `Ressenti ${Math.round(this.weatherData.nowcast.felt_temperature)}°`,
-        sun: this.formatSun(this.weatherData.daily_forecast.sunrise_time, this.weatherData.daily_forecast.sunset_time),
+        sunRise: moment(this.weatherData.daily_forecast.sunrise_time).locale("fr").format("HH:mm"),
+        sunSet: moment(this.weatherData.daily_forecast.sunset_time).locale("fr").format("HH:mm"),
         humidity: `${this.weatherData.nowcast.relative_humidity}%`,
         uv: Math.round(this.weatherData.daily_forecast.uv_index)
       },
@@ -298,20 +299,6 @@ Module.register("MMM-MeteoFrance", {
     fItem.wind = this.formatWind(fData.wind_speed, 0, fData.wind_icon);
 
     return fItem;
-  },
-
-  formatSun (Sunrise,Sunset) {
-    var now = new Date(Date.now());
-    var sunrise = new Date(Sunrise);
-    var sunset = new Date(Sunset);
-
-    var sunDate = sunrise < now && sunset > now ? sunset : sunrise;
-    var timeString = config.timeFormat === 24 ? moment(sunDate).locale("fr").format("HH:mm") : moment(sunDate).locale("fr").format("h:mm A");
-
-    return {
-      time: timeString,
-      icon: sunrise < now && sunset > now ? "wi-sunset" : "wi-sunrise"
-    };
   },
 
   /*
