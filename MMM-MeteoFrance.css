@@ -51,7 +51,7 @@
 }
 
 .MMM-MeteoFrance .brouilard {
-  background-image: url(/modules/MMM-MeteoFrance/resources/background/sbrouilard.png);
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/brouilard.png);
 }
 
 .MMM-MeteoFrance .lune_nuage {
@@ -112,6 +112,7 @@
 }
 
 .MMM-MeteoFrance .current-conditions.withPlace {
+  padding: 15px 10px 0 10px;
   padding: 15px 10px 0 10px;
 }
 
