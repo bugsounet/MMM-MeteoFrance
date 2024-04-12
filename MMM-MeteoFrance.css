@@ -93,10 +93,22 @@
 
 /* Current Conditions */
 .MMM-MeteoFrance .current-conditions {
-  display: block;
+  display: flex;
   text-align: center;
   position: relative;
   padding: 0 10px 0 10px;
+}
+
+.MMM-MeteoFrance .temperatures-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  flex: auto;
+  border-left: 1px solid;
+}
+
+.MMM-MeteoFrance .feels-temperature {
+  font-size: medium;
 }
 
 .MMM-MeteoFrance .current-conditions.withPlace {
@@ -109,7 +121,6 @@
 
 .MMM-MeteoFrance .current-conditions .icon {
   vertical-align: middle;
-  margin-right: 40px;
   width: 120px;
   height: 120px;
 }
