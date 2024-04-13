@@ -312,17 +312,20 @@
     position: relative;
 }
 
-.MMM-MeteoFrance .extra-current-conditions .temperature-uv-container,
-.MMM-MeteoFrance .extra-current-conditions .precipitation-container,
-.MMM-MeteoFrance .extra-current-conditions .wind-container,
-.MMM-MeteoFrance .extra-current-conditions .wind-alert-container {
+.MMM-MeteoFrance .extra-current-conditions .precipitation-container {
   display: inline-block;
   white-space: nowrap;
   margin-left: auto;
 }
 
-.MMM-MeteoFrance .extra-current-conditions .Precip-wind-container .wind-container {
-  margin-left: 5px;
+.MMM-MeteoFrance .extra-current-conditions .Precip-humidity-container,
+.MMM-MeteoFrance .extra-current-conditions .temperature-container,
+.MMM-MeteoFrance .extra-current-conditions .sun-container,
+.MMM-MeteoFrance .extra-current-conditions .wind-container,
+.MMM-MeteoFrance .extra-current-conditions .wind-alert-container {
+  display: block;
+  white-space: nowrap;
+  margin-left: auto;
 }
 
 /* Description */
