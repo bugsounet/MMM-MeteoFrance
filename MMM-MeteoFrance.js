@@ -210,7 +210,7 @@ Module.register("MMM-MeteoFrance", {
       currently : {
         temperature: `${this.weatherData.nowcast.temperature}°`,
         iconPath: this.weatherData.nowcast.weather_icon,
-        background: this.config.display.background ? this.weatherData.nowcast.weather_background : "none",
+        background: this.config.display.Background ? this.weatherData.nowcast.weather_background : "none",
         MMBackground: this.weatherData.nowcast.weather_background,
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
