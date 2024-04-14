@@ -364,3 +364,63 @@
   height: 40px;
   vertical-align: middle;
 }
+
+/* background MM² */
+#Background_MMM-MeteoFrance {
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#Background_MMM-MeteoFrance.fadein {
+  animation: MMBackgroundFadeIn 2s;
+}
+
+@keyframes MMBackgroundFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+#Background_MMM-MeteoFrance.unknow,
+#Background_MMM-MeteoFrance.default {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/default.png);
+}
+
+#Background_MMM-MeteoFrance.soleil {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/soleil.png);
+}
+
+#Background_MMM-MeteoFrance.soleil_nuage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/soleil_nuage.png);
+}
+
+#Background_MMM-MeteoFrance.brouilard {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/brouilard.png);
+}
+
+#Background_MMM-MeteoFrance.lune_nuage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/lune_nuage.png);
+}
+
+#Background_MMM-MeteoFrance.lune {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/lune.png);
+}
+
+#Background_MMM-MeteoFrance.neige {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/neige.png);
+}
+
+#Background_MMM-MeteoFrance.orage {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/orage.png);
+}
+
+#Background_MMM-MeteoFrance.pluie {
+  background-image: url(/modules/MMM-MeteoFrance/resources/tab/pluie.png);
+}

@@ -29,7 +29,8 @@ Module.register("MMM-MeteoFrance", {
       Feels: true,
       SunCondition: true,
       Humidity: true,
-      UV: true
+      UV: true,
+      MMBackground: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -60,6 +61,8 @@ Module.register("MMM-MeteoFrance", {
       this.config.updateInterval = 900000;
     }
     this.weathersPlaces = [];
+    this.MMBackgroundTimeout = null;
+    this.lastBackground = null;
   },
 
   getScripts () {
@@ -95,6 +98,7 @@ Module.register("MMM-MeteoFrance", {
     switch (notification) {
       case "ALL_MODULES_STARTED":
         this.sendSocketNotification("SET_CONFIG", this.config);
+        this.MMBackground();
         break;
     }
   },
@@ -138,6 +142,17 @@ Module.register("MMM-MeteoFrance", {
     this.log("last_update data:", this.last_update[place]);
     this.formattedWeatherData = this.processWeatherData();
     this.updateDom(1000);
+    if (this.config.display.MMBackground) {
+      if (this.lastBackground !== this.formattedWeatherData.currently.background) {
+        clearTimeout(this.MMBackgroundTimeout);
+        const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
+        MMBackground.className = this.formattedWeatherData.currently.background;
+        this.lastBackground = this.formattedWeatherData.currently.background;
+        MMBackground.classList.add("fadein");
+        this.MMBackgroundTimeout = setTimeout(()=> MMBackground.classList.remove("fadein"),2000);
+      }
+      //console.log("background:", this.formattedWeatherData.currently.background)
+    }
   },
 
   displayWeatherRotate () {
@@ -351,5 +366,17 @@ Module.register("MMM-MeteoFrance", {
     else if (kmh >= 103 && kmh <= 117) beaufort = 11;
     else if (kmh >= 118) beaufort = 12;
     return beaufort;
+  },
+
+  MMBackground () {
+    var nodes = document.getElementsByClassName("region fullscreen below");
+    var pos = nodes[0];
+    var children = pos.children[0];
+    var module = document.createElement("div");
+    module.id = "Background_MMM-MeteoFrance";
+    module.className = "default";
+    module.classList.add("fadein");
+    this.MMBackgroundTimeout = setTimeout(()=> module.classList.remove("fadein"),2000);
+    pos.insertBefore(module, children);
   }
 });
