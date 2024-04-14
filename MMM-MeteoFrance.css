@@ -376,7 +376,7 @@
 }
 
 #Background_MMM-MeteoFrance.fadein {
-  animation: MMBackgroundFadeIn 2s;
+  animation: MMBackgroundFadeIn 1s;
 }
 
 @keyframes MMBackgroundFadeIn {

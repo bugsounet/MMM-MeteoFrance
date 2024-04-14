@@ -143,11 +143,11 @@ Module.register("MMM-MeteoFrance", {
     this.formattedWeatherData = this.processWeatherData();
     this.updateDom(1000);
     if (this.config.display.MMBackground) {
-      if (this.lastBackground !== this.formattedWeatherData.currently.background) {
+      if (this.lastBackground !== this.formattedWeatherData.currently.MMBackground) {
         clearTimeout(this.MMBackgroundTimeout);
         const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
-        MMBackground.className = this.formattedWeatherData.currently.background;
-        this.lastBackground = this.formattedWeatherData.currently.background;
+        MMBackground.className = this.formattedWeatherData.currently.MMBackground;
+        this.lastBackground = this.formattedWeatherData.currently.MMBackground;
         MMBackground.classList.add("fadein");
         this.MMBackgroundTimeout = setTimeout(()=> MMBackground.classList.remove("fadein"),2000);
       }
@@ -210,7 +210,8 @@ Module.register("MMM-MeteoFrance", {
       currently : {
         temperature: `${this.weatherData.nowcast.temperature}°`,
         iconPath: this.weatherData.nowcast.weather_icon,
-        background: this.weatherData.nowcast.weather_background,
+        background: this.config.display.background ? this.weatherData.nowcast.weather_background : "none",
+        MMBackground: this.weatherData.nowcast.weather_background,
         tempRange: this.formatHiLowTemperature(this.weatherData.daily_forecast.T_max, this.weatherData.daily_forecast.T_min),
         precipitation: this.formatPrecipitation(this.weatherData.daily_forecast.total_precipitation_24h),
         wind: this.formatWind(this.weatherData.nowcast.wind_speed, this.weatherData.nowcast.wind_speed_gust, this.weatherData.nowcast.wind_icon),
@@ -376,7 +377,7 @@ Module.register("MMM-MeteoFrance", {
     module.id = "Background_MMM-MeteoFrance";
     module.className = "default";
     module.classList.add("fadein");
-    this.MMBackgroundTimeout = setTimeout(()=> module.classList.remove("fadein"),2000);
     pos.insertBefore(module, children);
+    this.MMBackgroundTimeout = setTimeout(()=> module.classList.remove("fadein"),1000);
   }
 });
