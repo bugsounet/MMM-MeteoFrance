@@ -369,7 +369,7 @@
 #Background_MMM-MeteoFrance {
   width: 100%;
   height: 100%;
-  opacity: 0.2;
+  opacity: 60%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -384,7 +384,7 @@
     opacity: 0;
   }
   100% {
-    opacity: 0.2;
+    opacity: 60%;
   }
 }
 
