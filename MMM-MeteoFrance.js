@@ -153,7 +153,7 @@ Module.register("MMM-MeteoFrance", {
           this.MMBackgroundTimeout = setTimeout(()=> MMBackground.classList.remove("fadein"),2000);
         }
         //console.log("background:", this.formattedWeatherData.currently.background)
-      },500)
+      },500);
     }
   },
 
