@@ -98,7 +98,7 @@ Module.register("MMM-MeteoFrance", {
     switch (notification) {
       case "DOM_OBJECTS_CREATED":
         if (this.config.display.MMBackground) this.MMBackground();
-        break
+        break;
       case "MODULE_DOM_CREATED":
         this.sendSocketNotification("SET_CONFIG", this.config);
         break;
