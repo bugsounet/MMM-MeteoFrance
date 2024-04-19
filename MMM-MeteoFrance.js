@@ -142,7 +142,7 @@ Module.register("MMM-MeteoFrance", {
     this.log("last_update data:", this.last_update[place]);
     this.formattedWeatherData = this.processWeatherData();
     this.updateDom(1000);
-    if (this.config.display.MMBackground) {
+    if (this.config.display.MMBackground && !this.hidden) {
       setTimeout(() => {
         if (this.lastBackground !== this.formattedWeatherData.currently.MMBackground) {
           clearTimeout(this.MMBackgroundTimeout);
@@ -381,5 +381,23 @@ Module.register("MMM-MeteoFrance", {
     module.classList.add("fadein");
     pos.insertBefore(module, children);
     this.MMBackgroundTimeout = setTimeout(()=> module.classList.remove("fadein"),1000);
+  },
+
+  suspend () {
+    if (this.config.display.MMBackground) {
+      clearTimeout(this.MMBackgroundTimeout);
+      const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
+      MMBackground.className = "hidden";
+    }
+    Log.log("MMM-MeteoFrance is suspended.");
+  },
+
+  resume () {
+    if (this.config.display.MMBackground) {
+      clearTimeout(this.MMBackgroundTimeout);
+      const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
+      MMBackground.className = this.formattedWeatherData.currently.MMBackground;
+    }
+    Log.log("MMM-MeteoFrance is resumed.");
   }
 });

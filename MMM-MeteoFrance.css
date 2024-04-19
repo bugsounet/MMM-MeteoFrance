@@ -75,7 +75,7 @@
 }
 
 .MMM-MeteoFrance .unknow {
-  background-image: url(/modules/MMM-MeteoFrance/resources/background/splash.jpg);
+  background-image: url(/modules/MMM-MeteoFrance/resources/background/unknow.jpg);
 }
 
 .MMM-MeteoFrance .loadingDisplayerLogo {
@@ -388,39 +388,80 @@
   }
 }
 
-#Background_MMM-MeteoFrance.unknow,
-#Background_MMM-MeteoFrance.default {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/default.png);
+@media screen and (orientation: landscape) {
+  #Background_MMM-MeteoFrance.unknow,
+  #Background_MMM-MeteoFrance.default {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/unknow.png);
+  }
+  
+  #Background_MMM-MeteoFrance.soleil {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/soleil.png);
+  }
+  
+  #Background_MMM-MeteoFrance.soleil_nuage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/soleil_nuage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.brouilard {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/brouilard.png);
+  }
+  
+  #Background_MMM-MeteoFrance.lune_nuage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/lune_nuage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.lune {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/lune.png);
+  }
+  
+  #Background_MMM-MeteoFrance.neige {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/neige.png);
+  }
+  
+  #Background_MMM-MeteoFrance.orage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/orage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.pluie {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/landscape/pluie.png);
+  }
 }
 
-#Background_MMM-MeteoFrance.soleil {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/soleil.png);
-}
-
-#Background_MMM-MeteoFrance.soleil_nuage {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/soleil_nuage.png);
-}
-
-#Background_MMM-MeteoFrance.brouilard {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/brouilard.png);
-}
-
-#Background_MMM-MeteoFrance.lune_nuage {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/lune_nuage.png);
-}
-
-#Background_MMM-MeteoFrance.lune {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/lune.png);
-}
-
-#Background_MMM-MeteoFrance.neige {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/neige.png);
-}
-
-#Background_MMM-MeteoFrance.orage {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/orage.png);
-}
-
-#Background_MMM-MeteoFrance.pluie {
-  background-image: url(/modules/MMM-MeteoFrance/resources/tab/pluie.png);
+@media screen and (orientation: portrait) {
+  #Background_MMM-MeteoFrance.unknow,
+  #Background_MMM-MeteoFrance.default {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/unknow.jpg);
+  }
+  
+  #Background_MMM-MeteoFrance.soleil {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/soleil.png);
+  }
+  
+  #Background_MMM-MeteoFrance.soleil_nuage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/soleil_nuage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.brouilard {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/brouilard.png);
+  }
+  
+  #Background_MMM-MeteoFrance.lune_nuage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/lune_nuage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.lune {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/lune.png);
+  }
+  
+  #Background_MMM-MeteoFrance.neige {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/neige.png);
+  }
+  
+  #Background_MMM-MeteoFrance.orage {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/orage.png);
+  }
+  
+  #Background_MMM-MeteoFrance.pluie {
+    background-image: url(/modules/MMM-MeteoFrance/resources/background/portrait/pluie.png);
+  }
 }
