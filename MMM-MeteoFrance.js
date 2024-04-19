@@ -389,7 +389,7 @@ Module.register("MMM-MeteoFrance", {
       const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
       MMBackground.className = "hidden";
     }
-    Log.log("MMM-MeteoFrance is suspended.")
+    Log.log("MMM-MeteoFrance is suspended.");
   },
 
   resume () {
@@ -398,6 +398,6 @@ Module.register("MMM-MeteoFrance", {
       const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
       MMBackground.className = this.formattedWeatherData.currently.MMBackground;
     }
-    Log.log("MMM-MeteoFrance is resumed.")
+    Log.log("MMM-MeteoFrance is resumed.");
   }
 });
