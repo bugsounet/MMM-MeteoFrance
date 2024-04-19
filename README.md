@@ -63,7 +63,8 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
       UV: true,
       Summary: true,
       HourlyForecast: true,
-      DailyForecast: true
+      DailyForecast: true,
+      MMBackground: true
     },
     personalize: {
       hourlyForecastInterval: 3,
@@ -88,7 +89,7 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
 | Option  | Description | Type | Defaut |
 | ------- | --- | --- | --- |
 | HeaderPlaceName | Affiche le nom de la ville<br>**Note:** Cette option est activée automatiquement en cas d'utilisation de plusieures villes. | boolean | false |
-| Backgound | Affiche le font météo dynamique. | boolean |  true |
+| Backgound | Affiche le fond météo dynamique sur le module. | boolean |  true |
 | CurrentConditions | Affiche l'icône des conditions actuelles et la température.| boolean | true |
 | ExtraCurrentConditions | Afficher les conditions actuelles supplémentaires telles que les températures élevées/basses, les précipitations, la vitesse du vent, ... | boolean | true |
 | Precipitation | Affiche les précipitations prévu pour la journée. | boolean | true |
@@ -100,6 +101,7 @@ Pour afficher le module, inserez ceci dans votre ficher `config.js`
 | Summary | Affiche une courte description du temps actuel. | boolean | true |
 | HourlyForecast | Affiche les prévisions des heures à venir. | boolean | true |
 | DailyForecast | Affiche les prévisions des jours suivants. | boolean | true |
+| MMBackground | Affiche le fond d'écran dymamique sur MagicMirror² | boolean | true |
 
 #### Options `personalize`
 

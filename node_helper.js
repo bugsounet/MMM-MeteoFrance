@@ -96,7 +96,7 @@ module.exports = NodeHelper.create({
             }).format(date);
           weather.update = update;
           if (weather.nowcast?.weather_icon) {
-            weather.nowcast.weather_background = this.config.display.Background ? this.searchBackground(weather.nowcast.weather_icon) : "none";
+            weather.nowcast.weather_background = this.searchBackground(weather.nowcast.weather_icon);
           }
           log(`Fetched last update for ${place}:`, weather.update);
           resolv(weather);
