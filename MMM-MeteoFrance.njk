@@ -4,8 +4,8 @@
       <div class="current-conditions-wrapper">
         <span class="current-conditions">
           {% if error %}
-            <img class="icon" src="modules/MMM-MeteoFrance/resources/p33j.svg" />
-            <div class="dimmed light small" style="margin-right: 20px">{{ phrases.error | safe }}</div>
+            <img class="icon" src="modules/MMM-MeteoFrance/resources/error.svg" />
+            <div class="small">{{ phrases.error | safe }}</div>
           {% else %}
             <div class="loadingDisplayer">
               <div class="loadingDisplayerLogo"><img class="loadingLogo" src="modules/MMM-MeteoFrance/resources/logo.png"></img></div>
