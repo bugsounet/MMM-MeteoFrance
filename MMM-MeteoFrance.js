@@ -96,9 +96,11 @@ Module.register("MMM-MeteoFrance", {
 
   notificationReceived (notification, payload) {
     switch (notification) {
-      case "ALL_MODULES_STARTED":
+      case "DOM_OBJECTS_CREATED":
+        if (this.config.display.MMBackground) this.MMBackground();
+        break;
+      case "MODULE_DOM_CREATED":
         this.sendSocketNotification("SET_CONFIG", this.config);
-        this.MMBackground();
         break;
     }
   },
