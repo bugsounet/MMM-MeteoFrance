@@ -2,6 +2,10 @@
   box-sizing: content-box;
 }
 
+.MMM-MeteoFrance .module-content > div {
+  display: inline-flex;
+}
+
 .MMM-MeteoFrance .wrapper {
   width: 330px;
   position: relative;
