@@ -389,7 +389,7 @@ Module.register("MMM-MeteoFrance", {
     if (this.config.display.MMBackground) {
       clearTimeout(this.MMBackgroundTimeout);
       const MMBackground = document.getElementById("Background_MMM-MeteoFrance");
-      MMBackground.className = "hidden";
+      if (MMBackground) MMBackground.className = "hidden";
     }
     Log.log("MMM-MeteoFrance is suspended.");
   },
