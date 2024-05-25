@@ -1,3 +1,7 @@
+#Background_MMM-MeteoFrance.hidden {
+  display: none;
+}
+
 .MMM-MeteoFrance * {
   box-sizing: content-box;
 }
