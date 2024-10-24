@@ -192,20 +192,35 @@ Module.register("MMM-MeteoFrance", {
         displayCounter++;
       }
     }
-    
+
     var dailies = [];
-    
+
     if (this.config.display.DailyForecast) {
-      for (var i = 1; i <= this.config.personalize.maxDailiesToShow; i++) {
-        if (this.weatherData.forecast[i] === null) {
-          break;
+      // Merge all forecasts from the same day in a single map.
+      const dailyMap = new Map();
+      const today = moment().hours(12);
+
+      for (let forecast of this.weatherData.forecast) {
+        const date = moment(forecast.time).format("YYYY-MM-DD");
+        if (!dailyMap.has(date))
+          dailyMap.set(date, [forecast]);
+        else
+          dailyMap.get(date).push(forecast);
+      }
+
+      for (let i = 0; i < this.config.personalize.maxDailiesToShow; i++) {
+        const date = today.clone().add(i + 1, "day").format("YYYY-MM-DD");
+        const values = dailyMap.get(date);
+
+        if (Array.isArray(values)) {
+          // Extract all non-null temperatures for the current day.
+          const temps = values.map((item) => item.temperature).filter((temp) => temp !== null);
+          // Select the displayed forecast somewhere in the middle of the data.
+          const selected = values[Math.ceil(values.length / 2)];
+
+          selected.temp = { min: Math.min(...temps), max: Math.max(...temps) };
+          dailies.push(this.forecastItemFactory(selected, "daily"));
         }
-        const date = this.searchDate(i);
-        const dayForecast = this.weatherData.forecast.find((forecast) => forecast.time === date);
-        const dayHours = this.searchDate(i, true);
-        const tempRange = this.getTempMinMax(dayHours);
-        dayForecast.temp = tempRange;
-        dailies.push(this.forecastItemFactory(dayForecast, "daily"));
       }
     }
 
@@ -232,58 +247,6 @@ Module.register("MMM-MeteoFrance", {
 
     this.log("processWeatherData data:", result);
     return result;
-  },
-
-  getTempMinMax (hours) {
-    var ArrayOfTemp = [];
-    tempRange= {};
-    for (var i = 1; i < hours.length; i++) {
-      var Temperature = this.weatherData.forecast.find((forecast) => forecast.time === hours[i]);
-      if (Temperature) ArrayOfTemp.push(Temperature.temperature);
-    }
-
-    tempRange.min = Math.min(...ArrayOfTemp);
-    tempRange.max = Math.max(...ArrayOfTemp);
-    return tempRange;
-  },
-
-  searchDate (days,array) {
-    const now = new Date(Date.now());
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-
-    const now14 = new Date(year,month,day,14,0,0);
-    const result14 = new Date(now14.setDate(now14.getDate() + days));
-    if (array) {
-      const now2 = new Date(year,month,day,2,0,0);
-      const now5 = new Date(year,month,day,5,0,0);
-      const now8 = new Date(year,month,day,8,0,0);
-      const now11 = new Date(year,month,day,11,0,0);
-      const now17 = new Date(year,month,day,17,0,0);
-      const now20 = new Date(year,month,day,20,0,0);
-      const now23 = new Date(year,month,day,23,0,0);
-
-      const result2 = new Date(now2.setDate(now2.getDate() + days));
-      const result5 = new Date(now5.setDate(now5.getDate() + days));
-      const result8 = new Date(now8.setDate(now8.getDate() + days));
-      const result11 = new Date(now11.setDate(now11.getDate() + days));
-      const result17 = new Date(now17.setDate(now17.getDate() + days));
-      const result20 = new Date(now20.setDate(now20.getDate() + days));
-      const result23 = new Date(now23.setDate(now23.getDate() + days));
-      return [
-        result2.toJSON(),
-        result5.toJSON(),
-        result8.toJSON(),
-        result11.toJSON(),
-        result14.toJSON(),
-        result17.toJSON(),
-        result20.toJSON(),
-        result23.toJSON()
-      ];
-    } else {
-      return result14.toJSON();
-    }
   },
 
   /*
