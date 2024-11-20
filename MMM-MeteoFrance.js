@@ -42,7 +42,7 @@ Module.register("MMM-MeteoFrance", {
   start () {
     console.log("[MeteoFrance] Starting...");
     if (this.config.debug) this.log = (...args) => { console.log("[MeteoFrance]", ...args); };
-    else this.log = (...args) => { /* do nothing */ };
+    else this.log = () => { /* do nothing */ };
     this.error = null;
     this.weatherData = null;
     this.formattedWeatherData = null;
@@ -51,6 +51,7 @@ Module.register("MMM-MeteoFrance", {
     this.first = true;
     this.place = 0;
     this.config = configMerge({}, this.defaults, this.config);
+
     /* define rotateInterval limit */
     if (this.config.rotateInterval < 15000) {
       console.warn("[MeteoFrance] rotateInterval to low... correct to 15000 (15 secs)");
@@ -87,14 +88,14 @@ Module.register("MMM-MeteoFrance", {
         error: this.error
       },
       loading: this.formattedWeatherData === null ? true : false,
-      error: this.error ? true: false,
+      error: this.error ? true : false,
       config: this.config,
       forecast: this.formattedWeatherData,
       update: this.weatherData && this.weatherData.update ? this.weatherData.update : this.translate("LOADING")
     };
   },
 
-  notificationReceived (notification, payload) {
+  notificationReceived (notification) {
     switch (notification) {
       case "DOM_OBJECTS_CREATED":
         if (this.config.display.MMBackground) this.MMBackground();
@@ -122,7 +123,7 @@ Module.register("MMM-MeteoFrance", {
       case "ERROR":
         if (typeof payload === "object") {
           if (payload.code === "EAI_AGAIN") this.error = "Connection lost...";
-          else this.error= payload.code;
+          else this.error = payload.code;
         }
         else this.error = payload;
         console.error("[MeteoFrance] **ERROR**", this.error);
@@ -152,18 +153,18 @@ Module.register("MMM-MeteoFrance", {
           MMBackground.className = this.formattedWeatherData.currently.MMBackground;
           this.lastBackground = this.formattedWeatherData.currently.MMBackground;
           MMBackground.classList.add("fadein");
-          this.MMBackgroundTimeout = setTimeout(()=> MMBackground.classList.remove("fadein"),2000);
+          this.MMBackgroundTimeout = setTimeout(() => MMBackground.classList.remove("fadein"), 2000);
         }
         //console.log("background:", this.formattedWeatherData.currently.background)
-      },500);
+      }, 500);
     }
   },
 
   displayWeatherRotate () {
     this.rotote = setInterval(() => {
       this.place++;
-      if (this.place > this.weathers.length-1) this.place = 0;
-      this.displayWeather(this.place,true);
+      if (this.place > this.weathers.length - 1) this.place = 0;
+      this.displayWeather(this.place, true);
     }, this.config.rotateInterval);
   },
 
@@ -202,10 +203,8 @@ Module.register("MMM-MeteoFrance", {
 
       for (let forecast of this.weatherData.forecast) {
         const date = moment(forecast.time).format("YYYY-MM-DD");
-        if (!dailyMap.has(date))
-          dailyMap.set(date, [forecast]);
-        else
-          dailyMap.get(date).push(forecast);
+        if (!dailyMap.has(date)) dailyMap.set(date, [forecast]);
+        else dailyMap.get(date).push(forecast);
       }
 
       for (let i = 0; i < this.config.personalize.maxDailiesToShow; i++) {
@@ -226,7 +225,7 @@ Module.register("MMM-MeteoFrance", {
 
     const result = {
       place: place,
-      currently : {
+      currently: {
         temperature: `${this.weatherData.nowcast.temperature}°`,
         iconPath: this.weatherData.nowcast.weather_icon,
         background: this.config.display.Background ? this.weatherData.nowcast.weather_background : "none",
@@ -240,9 +239,9 @@ Module.register("MMM-MeteoFrance", {
         humidity: `${this.weatherData.nowcast.relative_humidity}%`,
         uv: Math.round(this.weatherData.daily_forecast.uv_index)
       },
-      summary : summary,
-      hourly : hourlies,
-      daily : dailies
+      summary: summary,
+      hourly: hourlies,
+      daily: dailies
     };
 
     this.log("processWeatherData data:", result);
@@ -275,7 +274,7 @@ Module.register("MMM-MeteoFrance", {
     if (type === "hourly") { //just display projected temperature for that hour
       fItem.temperature = `${Math.round(fData.temperature)}°`;
     } else { //display High / Low temperatures
-      fItem.tempRange = this.formatHiLowTemperature(fData.temp.max,fData.temp.min);
+      fItem.tempRange = this.formatHiLowTemperature(fData.temp.max, fData.temp.min);
     }
 
     // --------- Wind ---------
@@ -287,7 +286,7 @@ Module.register("MMM-MeteoFrance", {
   /*
     Returns a formatted data object for High / Low temperature range
    */
-  formatHiLowTemperature (h,l) {
+  formatHiLowTemperature (h, l) {
     return {
       high: `${Math.round(h)}°`,
       low: `${Math.round(l)}°`
@@ -299,7 +298,7 @@ Module.register("MMM-MeteoFrance", {
    */
   formatPrecipitation (precipitation) {
     return {
-      accumulation: precipitation ?  `${precipitation} mm` : "0 mm"
+      accumulation: precipitation ? `${precipitation} mm` : "0 mm"
     };
 
   },
@@ -312,7 +311,7 @@ Module.register("MMM-MeteoFrance", {
 
     return {
       windSpeed: `${Math.round(speed)} km/h`,
-      windSpeedGust: gust ? `${Math.round(speed+gust)} km/h` : 0,
+      windSpeedGust: gust ? `${Math.round(speed + gust)} km/h` : 0,
       windIcon: icon,
       Beaufort: Beaufort
     };
@@ -345,7 +344,7 @@ Module.register("MMM-MeteoFrance", {
     module.className = "default";
     module.classList.add("fadein");
     pos.insertBefore(module, children);
-    this.MMBackgroundTimeout = setTimeout(()=> module.classList.remove("fadein"),1000);
+    this.MMBackgroundTimeout = setTimeout(() => module.classList.remove("fadein"), 1000);
   },
 
   suspend () {

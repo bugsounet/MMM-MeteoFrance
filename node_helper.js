@@ -10,19 +10,19 @@
 
 var NodeHelper = require("node_helper");
 
-var log = (...args) => { /* do nothing */ };
+var log = () => { /* do nothing */ };
 const { getWeather } = require("meteofrance_api");
 
 module.exports = NodeHelper.create({
 
   start () {
-    this.interval= null;
+    this.interval = null;
     this.weathers = [];
     this.weathersResult = [];
   },
 
-  socketNotificationReceived (notification, payload){
-    switch(notification) {
+  socketNotificationReceived (notification, payload) {
+    switch (notification) {
       case "SET_CONFIG":
         this.initialize(payload);
         break;
@@ -42,6 +42,7 @@ module.exports = NodeHelper.create({
     else return this.sendError("'place:' nom de ville manquante!");
 
     this.sendSocketNotification("WEATHER_PLACES", this.weathers);
+
     /* define updateInterval limit */
     if (this.config.updateInterval < 300000) {
       console.warn("[MeteoFrance] updateInterval to low... correct to 300000 (5 mins)");
@@ -75,7 +76,7 @@ module.exports = NodeHelper.create({
   },
 
   async fetchWeather (place) {
-    return new Promise ((resolv) => {
+    return new Promise((resolv) => {
       getWeather(place)
         .then((weather) => {
           if (!weather) {
@@ -101,7 +102,7 @@ module.exports = NodeHelper.create({
           log(`Fetched last update for ${place}:`, weather.update);
           resolv(weather);
         })
-        .catch ((error) => {
+        .catch((error) => {
           this.sendError(error);
           resolv(null);
         });
@@ -111,7 +112,7 @@ module.exports = NodeHelper.create({
   searchBackground (icon) {
     const name = icon.split("https://meteofrance.com/modules/custom/mf_tools_common_theme_public/svg/weather/")[1].split(".")[0];
     var background = null;
-    switch(name) {
+    switch (name) {
       case "p1j":
       case "p1bisj":
         background = "soleil";
@@ -290,7 +291,7 @@ module.exports = NodeHelper.create({
   },
 
   sendError (error, message) {
-    console.error(`[MeteoFrance] **ERREUR** ${error}`, message ? message: "");
+    console.error(`[MeteoFrance] **ERREUR** ${error}`, message ? message : "");
     this.sendSocketNotification("ERROR", error.message || error);
   }
 });
