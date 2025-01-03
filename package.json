@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "esbuild": "^0.24.2",
-    "glob": "^11.0.0",
+    "fdir": "^6.4.2",
     "meteofrance_api": "^1.2.4",
     "weathericons": "^2.1.0"
   },
