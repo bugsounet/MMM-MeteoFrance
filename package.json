@@ -1,6 +1,6 @@
 {
   "name": "MMM-MeteoFrance",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "MagicMirror² module that gets weather forecast data from Meteo France",
   "keywords": [
     "magicmirror",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "esbuild": "^0.24.2",
-    "glob": "^11.0.0",
+    "fdir": "^6.4.2",
     "meteofrance_api": "^1.2.4",
     "weathericons": "^2.1.0"
   },
@@ -44,7 +44,7 @@
     "@stylistic/eslint-plugin": "^2.12.1",
     "eslint": "^9.17.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-package-json": "^0.18.0"
+    "eslint-plugin-package-json": "^0.19.0"
   },
-  "rev": "241224"
+  "rev": "250103"
 }
